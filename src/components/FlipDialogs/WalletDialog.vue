@@ -1,0 +1,108 @@
+<template>
+    <div>
+        <q-card style="width: 300px">
+          <q-card-section class="q-pt-none">
+            <!-- Wallet Fields -->
+            <div class="q-ml-md text-weight-light text-h5 text-center text-primary">
+                <p>Your Wallet: <br> #{{wallet}} </p> 
+            </div>
+
+            <div>
+                <q-splitter
+                v-model="splitterModel"
+                style="height: 250px"
+                >
+
+                <template v-slot:before>
+                    <q-tabs
+                    v-model="tab"
+                    vertical
+                    class="text-primary"
+                    >
+                    <q-tab name="details" icon="list" label="Details" />
+                    <q-tab name="topup" icon="payment" label="Top-up" />
+                    <q-tab name="cashout" icon="payment" label="Cashout" />
+                    </q-tabs>
+                </template>
+
+                <template v-slot:after>
+                    <q-tab-panels
+                    v-model="tab"
+                    animated
+                    swipeable
+                    vertical
+                    transition-prev="jump-up"
+                    transition-next="jump-up"
+                    >
+                    <q-tab-panel name="details">
+                        <div class="text-h6 q-mb-sm">Bank Details</div>
+                        <p>Update your bank details here.</p>
+                        <q-input v-model="bankName" name="bankName" label="Bank Name:"/>
+                        <q-input v-model="acctNo" type="number" name="acctNo" label="Account Number:"/>
+                        <q-input v-model="cardNo" type="number" name="cardNo" label="Card Number:"/>
+                        <q-input                            
+                            v-model="expiryDate"
+                            label="Expiry Date"
+                            mask="##/##"
+                            fill-mask
+                            hint="Month/Year"
+                        />
+
+                    </q-tab-panel>
+
+                    <q-tab-panel name="topup">
+                        <div class="text-h6 q-mb-sm">Top Up</div>
+                        <p>How much would you like to fund your wallet with?</p>
+                        <q-input v-model="depositAmt" type="number" name="depositAmt" label="Deposit Amount:"/>
+                    </q-tab-panel>
+
+                    <q-tab-panel name="cashout">
+                        <div class="text-h6 q-mb-sm">Cash Out</div>
+                        <p>How much would you like to withdraw?</p>
+                        <q-input v-model="withdrawAmt" type="number" name="withdrawAmt" label="Withdraw Amount:"/>
+                    </q-tab-panel>
+                    </q-tab-panels>
+                </template>
+
+                </q-splitter>
+            </div>
+
+            <!-- <div class="text-weight-light text-h6 text-center text-grey-8">
+                <p>Top-up Wallet</p> 
+            </div>
+
+            <q-input v-model="flipName" name="flipName" label="Flip Name:"/>
+            <q-input v-model="phoneNo" type="number" name="phoneNo" label="Phone Number:"/>
+            <q-input v-model="email" name="email" label="Email:"/> -->
+            
+          </q-card-section>
+
+          <q-card-actions align="right" class="bg-white text-primary">
+            <q-btn color="primary" label="Save" v-close-popup />
+          </q-card-actions>
+        </q-card>
+    </div>
+</template>
+
+<script>
+    export default {
+        data(){
+            return{
+                wallet: 1300,
+                bankName: '',
+                acctNo: '',
+                cardNo: '',
+                expiryDate: '',
+                depositAmt: '',
+                withdrawAmt: '',
+                tab: 'details',
+                splitterModel: 30
+            }
+        }
+        
+    }
+</script>
+
+<style scoped>
+
+</style>
