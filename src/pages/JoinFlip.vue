@@ -1,26 +1,14 @@
 <template>
     <div>
-        <q-card style="width: 300px">
+        <q-card style="max-width: 400px">
           <q-card-section class="q-pt-none">
             <div class="q-ml-md text-weight-light text-h6 text-center">
-                Create New Flip
+                Join This Flip (#{{category}})
             </div>
 
             <div class="q-ml-md text-weight-light text-h5 text-center text-warning">
                 <p>Wallet: <br> #{{wallet}} </p> 
             </div>
-
-            <!-- Flip Category -->
-            <div class="bg-grey-4 q-pa-none rounded-borders">
-                Choose Flip Category:
-                <q-option-group
-                name="category"
-                v-model="category"
-                :options="options"
-                color="primary"
-                inline
-                />                
-            </div>  
             
             <!-- Flip Stars -->
             <div>
@@ -28,6 +16,11 @@
                     <q-chip color="red-10" text-color="white" icon="star_half">
                         Flip 1, 2 or 3 stars
                     </q-chip>
+
+                    <q-banner rounded class="bg-primary text-warning">
+                        Rex already flipped 3 star. <br>
+                        Sam already flipped 1 star.
+                    </q-banner>
                 </div>
                 
                 <div class="row justify-center">
@@ -44,10 +37,10 @@
             </div>                 
           </q-card-section>
 
-          <q-separator/>
+            <q-separator />
 
           <q-card-actions align="right" class="row bg-white text-primary">
-              <p class="q-pr-md"> Flip: {{category}}</p> 
+              <p class="q-pr-md"> Flip {{category}}</p> 
             <q-btn color="primary" label="Flip" @click="newFlip"/>
           </q-card-actions>
         </q-card>
@@ -59,34 +52,8 @@
         data(){
             return{
                 wallet: 1300,
-                category: '',
+                category: 1000,
                 ratingModel: 0,
-                options: [
-                    {
-                    label: '#10,000',
-                    value: '10000'
-                    },
-                    {
-                    label: '#5,000',
-                    value: '5000'
-                    },
-                    {
-                    label: '#1,000',
-                    value: '1000'
-                    },
-                    {
-                    label: '#500',
-                    value: '500'
-                    },
-                    {
-                    label: '#300',
-                    value: '300'
-                    },
-                    {
-                    label: '#100',
-                    value: '100'
-                    }                    
-                ]
             }
         },
         

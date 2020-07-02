@@ -8,7 +8,7 @@
             </div>
 
             <q-list bordered >
-                <q-item clickable v-ripple>
+                <q-item clickable v-ripple to="flip_id">
                     <q-item-section top avatar>
                         <q-avatar>
                             <img src="https://cdn.quasar.dev/img/boy-avatar.png">
@@ -28,7 +28,7 @@
 
                 <q-separator inset="item" />
 
-                <q-item clickable v-ripple>
+                <q-item clickable v-ripple to="flip_id">
                     <q-item-section top avatar>
                         <q-avatar>
                             <img src="https://cdn.quasar.dev/img/boy-avatar.png">

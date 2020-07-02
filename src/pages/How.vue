@@ -1,16 +1,12 @@
 <template>
     <q-page>
         <div>
-        <q-img src="/public/slideImages/picSlide1.jpg" :ratio="27/9">
+        <q-img src="images/stars4.jpg" :ratio="27/9">
           <div class="absolute-full text-subtitle2 flex flex-center">
-            <span class="text-h3 text-weight-thin"> How to Flip </span> 
+            <span class="text-h4 text-weight-thin"> How to Flip </span> 
           </div>
         </q-img>
       </div>
-
-        <div class="q-ml-md text-weight-light text-h6 text-center">
-            How to Flip!
-        </div>
 
         <div>
           <q-item>
@@ -30,7 +26,9 @@
 
           <q-item>
             <q-item-section top avatar>
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              <q-avatar>
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              </q-avatar>
             </q-item-section>
 
             <q-item-section>
@@ -49,7 +47,9 @@
 
           <q-item>
             <q-item-section top avatar>
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              <q-avatar>
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              </q-avatar>
             </q-item-section>
 
             <q-item-section>
@@ -69,7 +69,9 @@
 
           <q-item>
             <q-item-section top avatar>
-              <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              <q-avatar>
+                <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+              </q-avatar>
             </q-item-section>
 
             <q-item-section>

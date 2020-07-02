@@ -1,7 +1,7 @@
 <template>
     <div class="q-pa-sm row items-start q-gutter-sm">
         <q-card class="my-card">
-            <q-img src="https://lh3.googleusercontent.com/MOGvn_goXOQl9FQNeNcnq8sGlojS9btaZAt0LueMPa4tf7qefLwsWMXCbvgsCwd9Iw" />
+            <q-img src='images/picSlide1.jpg' />
 
             <q-card-section>
                 <q-avatar style="top: 0; left: 12px; transform: translateY(-85%);">

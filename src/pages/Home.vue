@@ -49,8 +49,9 @@
         Refresh
       </q-chip>
 
+<!-- Flip Dialogs -->
       <q-dialog v-model="flipList">
-        <JoinFlipDialog/>
+        <FlipListDialog/>
       </q-dialog>
 
       <q-dialog v-model="newFlip">
@@ -65,7 +66,7 @@
 
     <q-list bordered >
 
-      <q-item clickable v-ripple>
+      <q-item clickable v-ripple to="flip_id">
         <q-item-section top avatar>
           <q-avatar>
             <img src="https://cdn.quasar.dev/img/boy-avatar.png">
@@ -85,7 +86,7 @@
 
       <q-separator inset="item" />
 
-      <q-item clickable v-ripple>
+      <q-item clickable v-ripple to="flip_id">
         <q-item-section top avatar>
           <q-avatar>
             <img src="https://cdn.quasar.dev/img/boy-avatar.png">
@@ -104,26 +105,23 @@
       </q-item>
     </q-list>
 
-<!-- List of Current Flippers -->
-
-
   </q-page>
 </template>
 
 <script>
-import JoinFlipDialog  from '../components/FlipDialogs/JoinFlipDialog'
+import FlipListDialog  from '../components/FlipDialogs/FlipListDialog'
 import NewFlipDialog  from '../components/FlipDialogs/NewFlipDialog'
 
 export default {
   components: {
-    JoinFlipDialog,
+    FlipListDialog,
     NewFlipDialog
   },
   data() {
     return {
       category: '',
       // for Carousel
-      slide: 'gamer',
+      slide: 'gamer1',
       navigation: true,
       navPos: 'bottom',    
 
@@ -134,14 +132,38 @@ export default {
       slideData: [
         {
           id: '1',
-          name: 'gamer',
-          imageUrl: 'https://www.starpoker.com.au/sites/default/files/thumbnails/image/live_reporting.jpg',
+          name: 'gamer1',
+          imageUrl: 'images/picSlide1.jpg',
           title: 'Lets Play',
         },
         {
           id: '2',
-          name: 'game on',
-          imageUrl: 'https://lh3.googleusercontent.com/MOGvn_goXOQl9FQNeNcnq8sGlojS9btaZAt0LueMPa4tf7qefLwsWMXCbvgsCwd9Iw',
+          name: 'gamer2',
+          imageUrl: 'images/stars4.jpg',
+          title: 'Lets Play',
+        },
+        {
+          id: '3',
+          name: 'gamer3',
+          imageUrl: 'images/star8.jpg',
+          title: 'Lets Play',
+        },
+        {
+          id: '4',
+          name: 'gamer4',
+          imageUrl: 'images/picSlide2.jpg',
+          title: 'Lets Play',
+        },                                
+        {
+          id: '5',
+          name: 'gamer5',
+          imageUrl: 'images/star6.jpg',
+          title: 'Lets Play',
+        },
+        {
+          id: '6',
+          name: 'gamer6',
+          imageUrl: "images/star7.jpg",
           title: 'Cast Dice',
         }
       ]

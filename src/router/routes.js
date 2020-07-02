@@ -4,11 +4,11 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-            {
+      {
         path: '/',
         name: 'home',
         component: () => import('pages/Home.vue'),
-      },
+      },    
       {
         path: '/profile',
         name: 'profile',
@@ -19,6 +19,11 @@ const routes = [
         name: 'how',
         component: () => import('pages/How.vue'),
       },
+      {
+        path: '/:flip_id',
+        name: 'join-flip',
+        component: () => import('pages/JoinFlip.vue'),
+      },        
     ]
   },
 
