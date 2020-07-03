@@ -1,15 +1,9 @@
 <template>
     <q-page>
         <div>
-<<<<<<< HEAD
         <q-img src="images/stars4.jpg" :ratio="27/9">
           <div class="absolute-full text-subtitle2 flex flex-center">
             <span class="text-h4 text-weight-thin"> How to Flip </span> 
-=======
-        <q-img src="images/picslide1.jpg" :ratio="27/9">
-          <div class="absolute-full text-subtitle2 flex flex-center">
-            <span class="text-h3 text-weight-thin"> How to Flip </span>
->>>>>>> 0e0fdbc494dfa0212cb3083821c54c99017095d4
           </div>
         </q-img>
       </div>

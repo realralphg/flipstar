@@ -20,6 +20,16 @@ const routes = [
         component: () => import('pages/How.vue'),
       },
       {
+        path: '/signup',
+        name: 'signUp',
+        component: () => import('pages/SignUp.vue'),
+      },
+      {
+        path: '/signin',
+        name: 'signIn',
+        component: () => import('pages/SignIn.vue'),
+      },            
+      {
         path: '/:flip_id',
         name: 'join-flip',
         component: () => import('pages/JoinFlip.vue'),

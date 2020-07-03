@@ -20,7 +20,7 @@
 
         <q-space/>
         <!-- Show if Not Logged In -->
-          <!-- <q-btn no-caps flat class="gt-xs row" v-for="link in generalLinks" :key="link.id" :to="link.to" exact clickable>
+          <q-btn no-caps flat class="gt-xs row" v-for="link in generalLinks" :key="link.id" :to="link.to" exact clickable>
             <div class="column justify-center">
               <q-icon :name="link.icon" class="q-mr-xs" size="18px"/>
             </div>
@@ -28,7 +28,7 @@
             <div class="column q-mr-md">
               <q-item-label>{{link.label}}</q-item-label>
             </div>
-          </q-btn> -->
+          </q-btn>
 
         <!-- Show ONLY if Logged In -->
           <q-btn no-caps flat class="gt-xs row" v-for="link in essentialLinks" :key="link.id" :to="link.to" exact clickable>
@@ -62,7 +62,7 @@
         
 
         <!-- Show if Not Logged In -->
-        <!-- <q-item class="text-grey" v-for="link in generalLinks" :key="link.id" :to="link.to" exact clickable>
+        <q-item class="text-grey" v-for="link in generalLinks" :key="link.id" :to="link.to" exact clickable>
           <q-item-section avatar>
             <q-icon :name="link.icon"></q-icon>
           </q-item-section>
@@ -70,7 +70,7 @@
           <q-item-section>
             <q-item-label>{{link.label}}</q-item-label>
           </q-item-section>
-        </q-item> -->
+        </q-item>
 
         <!-- Show ONLY if Logged In -->
         <q-item class="text-grey" v-for="link in essentialLinks" :key="link.id" :to="link.to" exact clickable>
@@ -131,12 +131,6 @@ export default {
           icon: 'attach_money',
           to: '/how'
         },
-        // {
-        //   label: 'Organize Meetup',
-        //   icon: 'room',
-        //   to: '/meetup/new'
-        // },
-
       ]
     }
   },
