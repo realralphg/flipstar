@@ -39,7 +39,7 @@ export default {
 
   methods: {
     login(){
-      const endPoint = this.$axios.post(process.env.Api + "/api/login", this.form);
+      const endPoint = this.$axios.post(process.env.Api + "api/login", this.form);
       const res = endPoint.data;
       this.$axios.defaults.headers.common["Authorization"] = "Bearer " + res.access_token;
     }
