@@ -5,13 +5,12 @@
             Sign In to Flipstar
         </div>
       <form @submit.prevent="">
-          <q-input v-model="email" name="email" label="Email"/>
-          <q-input v-model="password" type="password" name="password" label="Password" />
-
-        <q-space/>
-        <div class="q-mt-sm row justify-right">
-            <q-btn type="submit" no-caps color="primary" :disabled="!formIsValid"  >Sign In</q-btn>
-        </div>
+          <q-input v-model="form.email" name="email" label="Email"/>
+          <q-input v-model="form.password" type="password" name="password" label="Password" />
+          <q-space/>
+          <div class="q-mt-sm row justify-right">
+              <q-btn type="submit" no-caps color="primary" @click="login" :disabled="!formIsValid"  >Sign In</q-btn>
+          </div>
       </form>
     </div>
   </div>
@@ -24,8 +23,10 @@ export default {
 
   data () {
     return {
-      email: '',
-      password: ''
+      form:{
+        email: '',
+        password: ''
+      }
     }
   },
 
@@ -33,11 +34,15 @@ export default {
     formIsValid () {
       return this.email !== '' &&
             this.password !== ''
-    }
+    },
   },
 
   methods: {
-
+    login(){
+      const endPoint = this.$axios.post(process.env.Api + "/api/login", this.form);
+      const res = endPoint.data;
+      this.$axios.defaults.headers.common["Authorization"] = "Bearer " + res.access_token;
+    }
   }
 
 }
