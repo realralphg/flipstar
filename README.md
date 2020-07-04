@@ -20,3 +20,15 @@ quasar build
 
 ### Customize the configuration
 See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+
+### Base endpoint
+Api='https://flipstar-api.herokuapp.com/'
+
+### login Required Fields
+string('email')->unique();
+string('password');
+
+### Registration Required Fields
+string('name');
+string('email')->unique();
+string('password');
