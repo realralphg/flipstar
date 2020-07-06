@@ -32,3 +32,6 @@ string('password');
 string('name');
 string('email')->unique();
 string('password');
+
+### Create card
+
