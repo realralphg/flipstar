@@ -39,11 +39,14 @@ export default {
   methods: {
     async login(){
       // querry the backend for login
-      const endPoint = await this.$axios.post(process.env.Api + "api/login", this.form);
+      const endPoint = await this.$axios.post(process.env.Api + "/api/login", this.form);
       // pass the requetsed data to a vareable
       const res = endPoint.data;
-      // pass the token from the data to the local storage
-      this.$LocalStorage.set("flipstar-token", res.access_token);
+      // pass the users info from the data to the store mutation
+      await this.$store.commit("auth/login", {
+          data: res.data,
+          token: res.access_token
+        });
       // pass the token into the $axios authorization header after login
       this.$axios.defaults.headers.common["Authorization"] = "Bearer " + res.access_token;
     }
