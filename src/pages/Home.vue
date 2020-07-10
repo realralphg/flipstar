@@ -7,7 +7,7 @@
         animated
         infinite
         autoplay
-        
+
         :navigation-position="navPos"
         height="150px"
         class="bg-grey-8 text-white"
@@ -79,7 +79,7 @@
         </q-item-section>
 
         <q-item-section side>
-          <q-item-label caption>5 min ago</q-item-label>      
+          <q-item-label caption>5 min ago</q-item-label>
           <q-icon name="star" color="yellow" />
         </q-item-section>
       </q-item>
@@ -99,7 +99,7 @@
         </q-item-section>
 
         <q-item-section side>
-          <q-item-label caption>6 min ago</q-item-label>      
+          <q-item-label caption>6 min ago</q-item-label>
           <q-icon name="star" color="grey-8" />
         </q-item-section>
       </q-item>
@@ -123,7 +123,7 @@ export default {
       // for Carousel
       slide: 'gamer1',
       navigation: true,
-      navPos: 'bottom',    
+      navPos: 'bottom',
 
       // for Dialogs
       flipList: false,
@@ -153,7 +153,7 @@ export default {
           name: 'gamer4',
           imageUrl: 'images/picSlide2.jpg',
           title: 'Lets Play',
-        },                                
+        },
         {
           id: '5',
           name: 'gamer5',
@@ -168,6 +168,10 @@ export default {
         }
       ]
     }
+  },
+
+  computed: {
+    user() { return this.$store.getters['auth/user'] }
   },
 
   methods:{
