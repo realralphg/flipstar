@@ -7,7 +7,7 @@ export const login = (state, data) => {
   state.user = data.data;
 };
 
-// pass user infomation to store state after successful fetach from api
+// pass user infomation to store state after successful fetch from api
 export const user = (state, data) => {
   state.user = data.data;
 };

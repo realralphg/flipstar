@@ -4,7 +4,7 @@
         <div class="q-pt-lg text-weight-light text-h4 text-primary" >
             Sign In to Flipstar
         </div>
-      <form @submit.prevent="">
+      <form @submit.prevent="login">
           <q-input v-model="form.email" name="email" label="Email"/>
           <q-input v-model="form.password" type="password" name="password" label="Password" />
           <q-space/>
@@ -50,9 +50,8 @@ export default {
 
       // pass the token into the $axios authorization header after login
       this.$axios.defaults.headers.common["Authorization"] = "Bearer " + res.access_token;
-
-
-
+      //redirect to home
+      this.$router.push('/');
     }
   }
 
