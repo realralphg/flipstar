@@ -1,6 +1,8 @@
+import axios from "axios";
+
 export async function user({ commit }) {
   return await new Promise((resolve, reject) => {
-    axios.get(process.env.Api + "/api/user")
+    axios.get(process.env.Api + "api/user")
       .then(response => {
         if (response.data.status == "success") {
           commit("user", { data: response.data.data });
@@ -16,7 +18,7 @@ export async function user({ commit }) {
 export async function logout({ commit }) {
   return await new Promise((resolve, reject) => {
     axios
-      .get(process.env.Api + "/api/logout")
+      .get(process.env.Api + "api/logout")
       .then(response => {
         if (response.data.status == "success") {
           commit("logout");
