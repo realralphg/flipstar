@@ -19,7 +19,7 @@
                     vertical
                     class="text-primary"
                     >
-                    <q-tab name="details" icon="list" label="Details" />
+                    <!-- <q-tab name="details" icon="list" label="Details" /> -->
                     <q-tab name="topup" icon="payment" label="Top-up" />
                     <q-tab name="cashout" icon="payment" label="Cashout" />
                     </q-tabs>
@@ -34,8 +34,7 @@
                     transition-prev="jump-up"
                     transition-next="jump-up"
                     >
-                    
-                    <q-tab-panel name="details">
+                    <!-- <q-tab-panel name="details">
                         <div class="text-h6 q-mb-sm">Bank Details</div>
                         <p>Update your bank details here.</p>
                         <q-input v-model="bankName" name="bankName" label="Bank Name:"/>
@@ -51,18 +50,27 @@
                          <q-btn color="white" text-color="black" label="Standard" onclick=()/>
 
 
-                    </q-tab-panel>
+                    </q-tab-panel> -->
 
                     <q-tab-panel name="topup">
                         <div class="text-h6 q-mb-sm">Top Up</div>
-                        <p>How much would you like to fund your wallet with?</p>
+                        <p>How much?</p>
+                        <q-input v-model="email" name="email" label="Email:"/>
                         <q-input v-model="depositAmt" type="number" name="depositAmt" label="Deposit Amount:"/>
+                        <div class="q-mt-sm">
+                            <q-btn color="primary" label="Pay" @click="payWithPaystack" />
+                        </div>
                     </q-tab-panel>
 
                     <q-tab-panel name="cashout">
                         <div class="text-h6 q-mb-sm">Cash Out</div>
-                        <p>How much would you like to withdraw?</p>
+                        <p>How much?</p>
+                        <q-input v-model="email" name="email" label="Email:"/>
                         <q-input v-model="withdrawAmt" type="number" name="withdrawAmt" label="Withdraw Amount:"/>
+
+                        <div class="q-mt-sm">
+                            <q-btn color="primary" label="Withdraw" @click="withdraw" />
+                        </div>
                     </q-tab-panel>
                     </q-tab-panels>
                 </template>
@@ -80,9 +88,9 @@
 
           </q-card-section>
 
-          <q-card-actions align="right" class="bg-white text-primary">
+          <!-- <q-card-actions align="right" class="bg-white text-primary">
             <q-btn color="primary" label="Save" v-close-popup />
-          </q-card-actions>
+          </q-card-actions> -->
         </q-card>
     </div>
 </template>
@@ -91,6 +99,7 @@
     export default {
         data(){
             return{
+                email: '',
                 wallet: 1300,
                 bankName: '',
                 acctNo: '',
@@ -98,8 +107,40 @@
                 expiryDate: '',
                 depositAmt: '',
                 withdrawAmt: '',
-                tab: 'details',
+                tab: 'topup',
                 splitterModel: 30
+            }
+        },
+
+        methods: {
+            payWithPaystack(){
+                const paymentForm = document.getElementById('paymentForm');
+                paymentForm.addEventListener("submit", payWithPaystack, false);
+                function payWithPaystack(e) {
+                e.preventDefault();
+                let handler = PaystackPop.setup({
+                    key: 'pk_test_xxxxxxxxxx', // Replace with your public key
+                    email: this.email,
+                    amount: this.depositAmt * 100,
+                    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                    // label: "Optional string that replaces customer email"
+
+                    onClose: function(){
+                    alert('Window closed.');
+                    },
+
+                    callback: function(response){
+                    let message = 'Payment complete! Reference: ' + response.reference;
+                    alert(message);
+                    }
+                });
+
+                handler.openIframe();
+                }
+            },
+
+            withdraw(){
+
             }
         }
 
