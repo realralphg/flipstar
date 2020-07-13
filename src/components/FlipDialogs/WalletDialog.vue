@@ -4,7 +4,7 @@
           <q-card-section class="q-pt-none">
             <!-- Wallet Fields -->
             <div class="q-ml-md text-weight-light text-h5 text-center text-primary">
-                <p>Your Wallet: <br> #{{wallet}} </p> 
+                <p>Your Wallet: <br> #{{wallet}} </p>
             </div>
 
             <div>
@@ -34,19 +34,22 @@
                     transition-prev="jump-up"
                     transition-next="jump-up"
                     >
+                    
                     <q-tab-panel name="details">
                         <div class="text-h6 q-mb-sm">Bank Details</div>
                         <p>Update your bank details here.</p>
                         <q-input v-model="bankName" name="bankName" label="Bank Name:"/>
                         <q-input v-model="acctNo" type="number" name="acctNo" label="Account Number:"/>
                         <q-input v-model="cardNo" type="number" name="cardNo" label="Card Number:"/>
-                        <q-input                            
+                        <q-input
                             v-model="expiryDate"
                             label="Expiry Date"
                             mask="##/##"
                             fill-mask
                             hint="Month/Year"
                         />
+                         <q-btn color="white" text-color="black" label="Standard" onclick=()/>
+
 
                     </q-tab-panel>
 
@@ -68,13 +71,13 @@
             </div>
 
             <!-- <div class="text-weight-light text-h6 text-center text-grey-8">
-                <p>Top-up Wallet</p> 
+                <p>Top-up Wallet</p>
             </div>
 
             <q-input v-model="flipName" name="flipName" label="Flip Name:"/>
             <q-input v-model="phoneNo" type="number" name="phoneNo" label="Phone Number:"/>
             <q-input v-model="email" name="email" label="Email:"/> -->
-            
+
           </q-card-section>
 
           <q-card-actions align="right" class="bg-white text-primary">
@@ -99,7 +102,7 @@
                 splitterModel: 30
             }
         }
-        
+
     }
 </script>
 
