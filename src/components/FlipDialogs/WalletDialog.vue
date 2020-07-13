@@ -4,7 +4,7 @@
           <q-card-section class="q-pt-none">
             <!-- Wallet Fields -->
             <div class="q-ml-md text-weight-light text-h5 text-center text-primary">
-                <p>Your Wallet: <br> #{{wallet}} </p> 
+                <p>Your Wallet: <br> #{{wallet}} </p>
             </div>
 
             <div>
@@ -40,24 +40,26 @@
                         <q-input v-model="bankName" name="bankName" label="Bank Name:"/>
                         <q-input v-model="acctNo" type="number" name="acctNo" label="Account Number:"/>
                         <q-input v-model="cardNo" type="number" name="cardNo" label="Card Number:"/>
-                        <q-input                            
+                        <q-input
                             v-model="expiryDate"
                             label="Expiry Date"
                             mask="##/##"
                             fill-mask
                             hint="Month/Year"
                         />
+                         <q-btn color="white" text-color="black" label="Standard" onclick=()/>
+
 
                     </q-tab-panel> -->
 
                     <q-tab-panel name="topup">
                         <div class="text-h6 q-mb-sm">Top Up</div>
-                        <p>How much?</p>
-                        <q-input v-model="email" name="email" label="Email:"/>
+                        <!-- <p>How much?</p>
+                        <q-input :value="user.email" name="email" label="Email:"/>
                         <q-input v-model="depositAmt" type="number" name="depositAmt" label="Deposit Amount:"/>
                         <div class="q-mt-sm">
-                            <q-btn color="primary" label="Pay" @click="payWithPaystack" />                            
-                        </div>                        
+                            <q-btn color="primary" label="Pay" @click="payWithPaystack" />
+                        </div> -->
                     </q-tab-panel>
 
                     <q-tab-panel name="cashout">
@@ -67,8 +69,8 @@
                         <q-input v-model="withdrawAmt" type="number" name="withdrawAmt" label="Withdraw Amount:"/>
 
                         <div class="q-mt-sm">
-                            <q-btn color="primary" label="Withdraw" @click="withdraw" />                            
-                        </div>                          
+                            <q-btn color="primary" label="Withdraw" @click="withdraw" />
+                        </div>
                     </q-tab-panel>
                     </q-tab-panels>
                 </template>
@@ -77,13 +79,13 @@
             </div>
 
             <!-- <div class="text-weight-light text-h6 text-center text-grey-8">
-                <p>Top-up Wallet</p> 
+                <p>Top-up Wallet</p>
             </div>
 
             <q-input v-model="flipName" name="flipName" label="Flip Name:"/>
             <q-input v-model="phoneNo" type="number" name="phoneNo" label="Phone Number:"/>
             <q-input v-model="email" name="email" label="Email:"/> -->
-            
+
           </q-card-section>
 
           <!-- <q-card-actions align="right" class="bg-white text-primary">
@@ -110,21 +112,32 @@
             }
         },
 
+        computed: {
+            user(){ return this.$store.getters['auth/user']}
+        },
+
+        mounted() {
+            this.payWithPaystack()
+        },
+
         methods: {
             payWithPaystack(){
-                const paymentForm = document.getElementById('paymentForm');
-                paymentForm.addEventListener("submit", payWithPaystack, false);
-                function payWithPaystack(e) {
-                e.preventDefault();
+
                 let handler = PaystackPop.setup({
+<<<<<<< HEAD
                     key: 'pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81', // Replace with your public key
                     email: this.email,
                     amount: this.depositAmt * 100,
+=======
+                    key: 'pk_test_xxxxxxxxxx', // Replace with your public key
+                    email: 'hello@gmail.com',
+                    amount: 5000,
+>>>>>>> ee0c99183c4e2cd86971b7ca82990b7258b106fc
                     ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
                     // label: "Optional string that replaces customer email"
 
                     onClose: function(){
-                    alert('Window closed.');
+                        alert('Window closed.');
                     },
 
                     callback: function(response){
@@ -134,14 +147,14 @@
                 });
 
                 handler.openIframe();
-                }                
+
             },
 
             withdraw(){
-                
+
             }
         }
-        
+
     }
 </script>
 
