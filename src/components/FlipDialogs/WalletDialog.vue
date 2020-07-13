@@ -54,12 +54,12 @@
 
                     <q-tab-panel name="topup">
                         <div class="text-h6 q-mb-sm">Top Up</div>
-                        <p>How much?</p>
-                        <q-input v-model="email" name="email" label="Email:"/>
+                        <!-- <p>How much?</p>
+                        <q-input :value="user.email" name="email" label="Email:"/>
                         <q-input v-model="depositAmt" type="number" name="depositAmt" label="Deposit Amount:"/>
                         <div class="q-mt-sm">
                             <q-btn color="primary" label="Pay" @click="payWithPaystack" />
-                        </div>
+                        </div> -->
                     </q-tab-panel>
 
                     <q-tab-panel name="cashout">
@@ -112,21 +112,26 @@
             }
         },
 
+        computed: {
+            user(){ return this.$store.getters['auth/user']}
+        },
+
+        mounted() {
+            this.payWithPaystack()
+        },
+
         methods: {
             payWithPaystack(){
-                const paymentForm = document.getElementById('paymentForm');
-                paymentForm.addEventListener("submit", payWithPaystack, false);
-                function payWithPaystack(e) {
-                e.preventDefault();
+
                 let handler = PaystackPop.setup({
                     key: 'pk_test_xxxxxxxxxx', // Replace with your public key
-                    email: this.email,
-                    amount: this.depositAmt * 100,
+                    email: 'hello@gmail.com',
+                    amount: 5000,
                     ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
                     // label: "Optional string that replaces customer email"
 
                     onClose: function(){
-                    alert('Window closed.');
+                        alert('Window closed.');
                     },
 
                     callback: function(response){
@@ -136,7 +141,7 @@
                 });
 
                 handler.openIframe();
-                }
+
             },
 
             withdraw(){
