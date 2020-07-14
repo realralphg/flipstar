@@ -54,12 +54,12 @@
 
                     <q-tab-panel name="topup">
                         <div class="text-h6 q-mb-sm">Top Up</div>
-                        <!-- <p>How much?</p>
+                        <p>How much?</p>
                         <q-input :value="user.email" name="email" label="Email:"/>
                         <q-input v-model="depositAmt" type="number" name="depositAmt" label="Deposit Amount:"/>
                         <div class="q-mt-sm">
-                            <q-btn color="primary" label="Pay" @click="payWithPaystack" />
-                        </div> -->
+                            <q-btn color="primary" label="Pay" @click="payWithPaystack()" />
+                        </div>
                     </q-tab-panel>
 
                     <q-tab-panel name="cashout">
@@ -69,7 +69,7 @@
                         <q-input v-model="withdrawAmt" type="number" name="withdrawAmt" label="Withdraw Amount:"/>
 
                         <div class="q-mt-sm">
-                            <q-btn color="primary" label="Withdraw" @click="withdraw" />
+                            <q-btn color="primary" label="Withdraw" @click="withdraw()" />
                         </div>
                     </q-tab-panel>
                     </q-tab-panels>
@@ -116,17 +116,13 @@
             user(){ return this.$store.getters['auth/user']}
         },
 
-        mounted() {
-            this.payWithPaystack()
-        },
-
-        methods: {
+methods: {
             payWithPaystack(){
 
                 let handler = PaystackPop.setup({
-                    key: 'pk_test_xxxxxxxxxx', // Replace with your public key
-                    email: 'hello@gmail.com',
-                    amount: 5000,
+                    key: 'pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81', // Replace with your public key
+                    email: this.$store.getters['auth/user'].email,
+                    amount: this.depositAmt,
                     ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
                     // label: "Optional string that replaces customer email"
 
@@ -135,8 +131,8 @@
                     },
 
                     callback: function(response){
-                    let message = 'Payment complete! Reference: ' + response.reference;
-                    alert(message);
+                      let message = 'Payment complete! Reference: ' + response.reference;
+                      alert(message);
                     }
                 });
 
