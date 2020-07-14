@@ -135,6 +135,7 @@ methods: {
                       alert(message);
                     }
                 });
+                
 
                 handler.openIframe();
 
