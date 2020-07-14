@@ -10,6 +10,9 @@
             <q-input v-model="flipName" name="flipName" label="Flip Name:"/>
             <q-input v-model="phoneNo" type="number" name="phoneNo" label="Phone Number:"/>
             <q-input v-model="email" name="email" label="Email:"/>
+            <q-input v-model="bankName" name="bankName" label="Bank Name:"/>
+            <q-input v-model="accountNo" type="number" name="accountNo" label="Account Number:"/>
+            <span class="text-warning text-center"><small>Cash withdrawn is paid into this Bank Account.</small></span>
             
           </q-card-section>
 
@@ -24,9 +27,11 @@
     export default {
         data(){
             return{
-                flipName: '',
-                phoneNo: '',
-                email: '',
+                flipName: null,
+                phoneNo: null,
+                email: null,
+                bankName: null,
+                accountNo: null,
             }
         }
         

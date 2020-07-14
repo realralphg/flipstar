@@ -8,6 +8,10 @@
                     <img src="https://cdn.quasar.dev/img/boy-avatar.png">                    
                 </q-avatar>
 
+                <div class="q-ml-md text-weight-light text-h5 text-center text-primary">
+                    <p>Your Wallet: #{{wallet}} </p>
+                </div>
+
                 <div class="q-pt-none">
                     <div class="row justify-center text-h6 ellipsis text-grey-8">
                         Jax
@@ -18,7 +22,7 @@
                     </div>
 
                     <div class="row justify-center">
-                        <q-chip clickable @click="updateDialog=true" icon="star_outline">Update Profile</q-chip>
+                        <q-chip clickable @click="updateDialog=true" icon="star_outline">Update Profile/Cashout Details</q-chip>
                     </div>
 
                     <div class="row justify-center text-h9 text-grey-8">
@@ -42,39 +46,52 @@
 
             <q-card-actions>
                 <q-btn flat round icon="payment" color="green-8" />
-                <q-btn flat color="green-8" @click="walletDialog=true">
-                Wallet: #1,300
+                <q-btn flat color="green-8" @click="topupDialog=true">
+                    Top-up
+                </q-btn>
+
+                <q-btn flat color="green-8" @click="cashoutDialog=true">
+                    Cash-out
                 </q-btn>
 
                 <q-space/>
                 <q-btn to="/" outline color="green-8"> Go Flip </q-btn>
             </q-card-actions>
         </q-card>
-
+<!-- Dialogs -->
         <q-dialog v-model="updateDialog">
             <UpdateDialog/>
         </q-dialog>     
         
-        <q-dialog v-model="walletDialog">
-            <WalletDialog/>
-        </q-dialog>    
+        <q-dialog v-model="topupDialog">
+            <TopupDialog/>
+        </q-dialog> 
+
+        <q-dialog v-model="cashoutDialog">
+            <CashoutDialog/>
+        </q-dialog>  
     </div>
 </template>
 
 <script>
 import UpdateDialog  from '../components/FlipDialogs/UpdateDialog'
-import WalletDialog  from '../components/FlipDialogs/WalletDialog'
+import TopupDialog  from '../components/FlipDialogs/TopupDialog'
+import CashoutDialog  from '../components/FlipDialogs/CashoutDialog'
     export default {
         components: {
             UpdateDialog,
-            WalletDialog
+            TopupDialog,
+            CashoutDialog
         },
         data(){
             return{
+                wallet: 1300,
                 stars: 4,
                 vipStatus: '',
                 updateDialog: false,
-                walletDialog: false
+                topupDialog: false,
+                cashoutDialog: false,
+
             }
         }
         
