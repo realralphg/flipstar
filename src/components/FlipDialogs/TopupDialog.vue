@@ -11,9 +11,9 @@
                 <p>Top-up Wallet</p>
             </div>
 
-            <div>                
-                <q-input v-model="email" name="email" label="Email:"/>                
-                <q-input v-model="depositAmt" mask="#.##" reverse-fill-mask input-class="text-right" label="Deposit Amount:"/>
+            <div>
+                <q-input v-model="email" name="email" label="Email:"/>
+                <q-input v-model="depositAmt" input-class="text-right" label="Deposit Amount:" suffix=".00"/>
                 <span class="text-warning text-center"><small>This payment is credited to your Flip Wallet.</small></span>
 
                 <q-card-actions align="right" class="q-mt-sm">
@@ -29,7 +29,7 @@
     export default {
         data(){
             return{
-                wallet: 1300,                
+                wallet: 1300,
                 email: null,
                 depositAmt: null
             }
@@ -45,7 +45,7 @@ methods: {
                 let handler = PaystackPop.setup({
                     key: 'pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81', // Replace with your public key
                     email: this.$store.getters['auth/user'].email,
-                    amount: this.depositAmt,
+                    amount: this.depositAmt + '00',
                     ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
                     // label: "Optional string that replaces customer email"
 
@@ -58,7 +58,7 @@ methods: {
                       alert(message);
                     }
                 });
-                
+
 
                 handler.openIframe();
 

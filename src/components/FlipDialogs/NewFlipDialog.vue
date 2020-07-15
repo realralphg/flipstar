@@ -7,7 +7,7 @@
             </div>
 
             <div class="q-ml-md text-weight-light text-h5 text-center text-warning">
-                <p>Wallet: <br> #{{wallet}} </p> 
+                <p>Wallet: <br> #{{wallet}} </p>
             </div>
 
             <!-- Flip Category -->
@@ -19,9 +19,9 @@
                 :options="options"
                 color="primary"
                 inline
-                />                
-            </div>  
-            
+                />
+            </div>
+
             <!-- Flip Stars -->
             <div>
                 <div class="row justify-center">
@@ -29,25 +29,20 @@
                         Flip 1, 2 or 3 stars
                     </q-chip>
                 </div>
-                
+
                 <div class="row justify-center">
-                    <q-rating
-                        v-model="ratingModel"
-                        size="5em"
-                        color="warning"
-                        icon="star_border"
-                        icon-selected="star"
-                        :max="3"
-                    /> 
-                    <p class="text-primary">You're about to flip {{ratingModel}} star(s)</p>                    
+                    <q-rating v-model="ratingModel"
+                        size="5em" color="warning" icon="star_border" icon-selected="star" :max="3"
+                    />
+                    <p class="text-primary">You're about to flip {{ratingModel}} star(s)</p>
                 </div>
-            </div>                 
+            </div>
           </q-card-section>
 
           <q-separator/>
 
           <q-card-actions align="right" class="row bg-white text-primary">
-              <p class="q-pr-md"> Flip: {{category}}</p> 
+              <p class="q-pr-md"> Flip: {{category}}</p>
             <q-btn color="primary" label="Flip" @click="newFlip"/>
           </q-card-actions>
         </q-card>
@@ -85,18 +80,18 @@
                     {
                     label: '#100',
                     value: '100'
-                    }                    
+                    }
                 ]
             }
         },
-        
+
         methods:{
             newFlip(){
                 if(Number(this.category) > this.wallet){
-                    console.log('Not Enough Funds')                    
+                    console.log('Not Enough Funds')
                 }else{
                     this.wallet -= this.category
-                    console.log('Flippng Ready - Push to Flip List')                    
+                    console.log('Flippng Ready - Push to Flip List')
                 }
             }
         }
