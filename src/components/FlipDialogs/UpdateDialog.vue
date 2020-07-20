@@ -3,7 +3,7 @@
         <q-card style="width: 300px">
           <q-card-section class="q-pt-none">
             <!-- Update Fields -->
-            <div class="text-weight-light text-h6">
+            <div class="text-weight-light text-h6 text-warning">
                 Update Details
             </div>
 

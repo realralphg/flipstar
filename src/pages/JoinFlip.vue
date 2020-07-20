@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <q-card style="max-width: 400px">
+    <div class="q-pa-sm row items-start q-gutter-sm justify-center bg-grey-7">
+        <q-card class="bg-grey-10" style="max-width: 400px">
           <q-card-section class="q-pt-none">
-            <div class="q-ml-md text-weight-light text-h6 text-center">
+            <div class="q-ml-md text-weight-light text-h6 text-center text-grey">
                 Join This Flip (#{{category}})
             </div>
 
@@ -14,9 +14,11 @@
             <div>
                 <div class="row justify-center">
                     <q-chip color="red-10" text-color="white" icon="star_half">
-                        Flip 1, 2 or 3 stars
+                        Click 1, 2 or 3 stars to flip
                     </q-chip>
+                </div>
 
+                <div class="row justify-center">                   
                     <q-banner rounded class="bg-primary text-warning">
                         Rex already flipped 3 star. <br>
                         Sam already flipped 1 star.
@@ -32,16 +34,16 @@
                         icon-selected="star"
                         :max="3"
                     /> 
-                    <p class="text-primary">You're about to flip {{ratingModel}} star(s)</p>                    
+                    <p class="text-grey">You're about to flip {{ratingModel}} star(s)</p>                    
                 </div>
             </div>                 
           </q-card-section>
 
-            <q-separator />
+            <q-separator  color="grey"/>
 
-          <q-card-actions align="right" class="row bg-white text-primary">
-              <p class="q-pr-md"> Flip {{category}}</p> 
-            <q-btn color="primary" label="Flip" @click="newFlip"/>
+          <q-card-actions align="right" class="row bg-white text-primary bg-grey-10">
+              <p class="q-pr-md text-grey"> Flip {{category}}</p> 
+            <q-btn outline color="warning" label="Flip" @click="newFlip"/>
           </q-card-actions>
         </q-card>
     </div>
