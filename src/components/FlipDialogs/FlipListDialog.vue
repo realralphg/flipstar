@@ -3,11 +3,11 @@
         <q-card class="bg-grey-10" style="width: 300px">
           <q-card-section class="q-pt-none">
             <!-- List of Current Flippers -->
-            <div class="q-ml-md text-weight-light text-h6 text-grey">
+            <div class="q-ml-md text-weight-light text-h6 text-warning">
                 Currently Flippin' ...
             </div>
 
-            <q-list class="text-grey" bordered>
+            <q-list class="text-warning" bordered>
                 <q-item clickable v-ripple to="flip_id">
                     <q-item-section top avatar>
                         <q-avatar>
