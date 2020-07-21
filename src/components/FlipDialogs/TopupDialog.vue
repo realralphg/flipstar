@@ -46,7 +46,8 @@ methods: {
                     key: 'pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81', // Replace with your public key
                     email: this.$store.getters['auth/user'].email,
                     amount: this.depositAmt + '00',
-                    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+                    ref: ''+Math.floor((Math.random() * 1000000000) + 1),
+                    // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
                     // label: "Optional string that replaces customer email"
 
                     onClose: function(){
