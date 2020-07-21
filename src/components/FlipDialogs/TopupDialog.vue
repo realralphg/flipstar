@@ -1,5 +1,8 @@
 <template>
     <div>
+      <q-btn flat color="warning" @click="open = true">Top-up</q-btn>
+
+      <q-dialog v-model="open">
         <q-card style="width: 300px">
           <q-card-section class="q-pt-none">
             <!-- Wallet Fields -->
@@ -12,7 +15,7 @@
             </div>
 
             <div>
-                <q-input v-model="email" name="email" label="Email:"/>
+                <q-input :value="user.email" name="email" label="Email"/>
                 <q-input v-model="depositAmt" input-class="text-right" label="Deposit Amount:" suffix=".00"/>
                 <span class="text-warning text-center"><small>This payment is credited to your Flip Wallet.</small></span>
 
@@ -22,6 +25,8 @@
             </div>
           </q-card-section>
         </q-card>
+      </q-dialog>
+
     </div>
 </template>
 
@@ -29,9 +34,10 @@
     export default {
         data(){
             return{
-                wallet: 1300,
-                email: null,
-                depositAmt: null
+              open: false,
+              wallet: 1300,
+              email: null,
+              depositAmt: null
             }
         },
 
@@ -39,12 +45,12 @@
             user(){ return this.$store.getters['auth/user']}
         },
 
-methods: {
+        methods: {
             showNotif (message) {
-                this.$q.notify({
-                    message: 'Jim pinged you.',
-                    color: 'black'
-                })
+              this.$q.notify({
+                message: 'Jim pinged you.',
+                color: 'black'
+              })
             },
 
             payWithPaystack(){
@@ -63,8 +69,8 @@ methods: {
 
                     callback: function(response){
                       let message = 'Payment complete! Reference: ' + response.reference;
-                      //alert(message);
-                      showNotif(message)
+                      alert(message);
+                      this.open = false
                     }
                 });
 

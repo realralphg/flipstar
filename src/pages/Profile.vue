@@ -5,7 +5,7 @@
 
             <q-card-section>
                 <q-avatar style="top: 0; left: 12px; transform: translateY(-85%);">
-                    <img src="https://cdn.quasar.dev/img/boy-avatar.png">                    
+                    <img src="https://cdn.quasar.dev/img/boy-avatar.png">
                 </q-avatar>
 
                 <div class="q-ml-md text-weight-light text-h5 text-center text-warning">
@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="row justify-center text-h6 ellipsis">
-                        <q-rating v-model="stars" :max="5" size="32px" />                        
+                        <q-rating v-model="stars" :max="5" size="32px" />
                     </div>
 
                     <div class="row justify-center">
@@ -27,8 +27,8 @@
 
                     <div class="row justify-center text-h9 text-warning">
                         Everyday is a good day to WIN!
-                    </div>                                
-                </div>            
+                    </div>
+                </div>
             </q-card-section>
 
             <q-card-section class="q-pt-none">
@@ -46,30 +46,24 @@
 
             <q-card-actions>
                 <q-btn flat round icon="payment" color="warning" />
-                <q-btn flat color="warning" @click="topupDialog=true">
-                    Top-up
-                </q-btn>
+                <TopupDialog />
 
                 <q-btn flat color="warning" @click="cashoutDialog=true">
                     Cash-out
                 </q-btn>
-
                 <q-space/>
                 <q-btn to="/" outline color="warning"> Go Flip </q-btn>
             </q-card-actions>
         </q-card>
-<!-- Dialogs -->
+
+        <!-- Dialogs -->
         <q-dialog v-model="updateDialog">
             <UpdateDialog/>
-        </q-dialog>     
-        
-        <q-dialog v-model="topupDialog">
-            <TopupDialog/>
-        </q-dialog> 
+        </q-dialog>
 
         <q-dialog v-model="cashoutDialog">
             <CashoutDialog/>
-        </q-dialog>  
+        </q-dialog>
     </div>
 </template>
 
@@ -83,6 +77,7 @@ import CashoutDialog  from '../components/FlipDialogs/CashoutDialog'
             TopupDialog,
             CashoutDialog
         },
+
         data(){
             return{
                 wallet: 1300,
@@ -94,7 +89,7 @@ import CashoutDialog  from '../components/FlipDialogs/CashoutDialog'
 
             }
         }
-        
+
     }
 </script>
 
