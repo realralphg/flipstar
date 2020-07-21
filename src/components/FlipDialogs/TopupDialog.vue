@@ -40,6 +40,13 @@
         },
 
 methods: {
+            showNotif (message) {
+                this.$q.notify({
+                    message: 'Jim pinged you.',
+                    color: 'black'
+                })
+            },
+
             payWithPaystack(){
 
                 let handler = PaystackPop.setup({
@@ -50,13 +57,14 @@ methods: {
                     // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
                     // label: "Optional string that replaces customer email"
 
-                    onClose: function(){
-                        alert('Window closed.');
-                    },
+                    // onClose: function(){
+                    //     alert('Window closed.');
+                    // },
 
                     callback: function(response){
                       let message = 'Payment complete! Reference: ' + response.reference;
-                      alert(message);
+                      //alert(message);
+                      showNotif(message)
                     }
                 });
 

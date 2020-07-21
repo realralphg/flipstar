@@ -1,6 +1,6 @@
 <template>
-    <div class="q-pa-sm row items-start q-gutter-sm">
-        <q-card class="my-card">
+    <div class="q-pa-sm row items-start q-gutter-sm justify-center bg-grey-7">
+        <q-card class="my-card bg-grey-10">
             <q-img src='images/picSlide1.jpg' />
 
             <q-card-section>
@@ -8,12 +8,12 @@
                     <img src="https://cdn.quasar.dev/img/boy-avatar.png">                    
                 </q-avatar>
 
-                <div class="q-ml-md text-weight-light text-h5 text-center text-primary">
+                <div class="q-ml-md text-weight-light text-h5 text-center text-warning">
                     <p>Your Wallet: #{{wallet}} </p>
                 </div>
 
                 <div class="q-pt-none">
-                    <div class="row justify-center text-h6 ellipsis text-grey-8">
+                    <div class="row justify-center text-h6 ellipsis text-grey-4">
                         Jax
                     </div>
 
@@ -25,37 +25,37 @@
                         <q-chip clickable @click="updateDialog=true" icon="star_outline">Update Profile/Cashout Details</q-chip>
                     </div>
 
-                    <div class="row justify-center text-h9 text-grey-8">
+                    <div class="row justify-center text-h9 text-warning">
                         Everyday is a good day to WIN!
                     </div>                                
                 </div>            
             </q-card-section>
 
             <q-card-section class="q-pt-none">
-                <div class="text-h7 text-green-8">
+                <div class="text-h7 text-warning">
                     Your Wins:
                 </div>
-                <div class="text-caption text-grey-8">
+                <div class="text-caption text-grey-4">
                     #1,000 - Date<br>
                     #10,000 - Date<br>
                     #5,000 - Date<br>
                 </div>
             </q-card-section>
 
-            <q-separator />
+            <q-separator color="grey" />
 
             <q-card-actions>
-                <q-btn flat round icon="payment" color="green-8" />
-                <q-btn flat color="green-8" @click="topupDialog=true">
+                <q-btn flat round icon="payment" color="warning" />
+                <q-btn flat color="warning" @click="topupDialog=true">
                     Top-up
                 </q-btn>
 
-                <q-btn flat color="green-8" @click="cashoutDialog=true">
+                <q-btn flat color="warning" @click="cashoutDialog=true">
                     Cash-out
                 </q-btn>
 
                 <q-space/>
-                <q-btn to="/" outline color="green-8"> Go Flip </q-btn>
+                <q-btn to="/" outline color="warning"> Go Flip </q-btn>
             </q-card-actions>
         </q-card>
 <!-- Dialogs -->

@@ -24,6 +24,14 @@
       </q-toolbar>
     </q-header>
 
+    <q-footer>
+      <div class="text-center bg-grey-10">
+        <div>Copyright 2020</div>
+        <div class="text-grey-6">Greysoft Technologies</div>
+      </div>
+    </q-footer>
+
+<!-- Drawer -->
     <q-drawer
       v-model="leftDrawerOpen"
       :width="250"
@@ -58,7 +66,7 @@
             <q-icon name="sentiment_very_satisfied"></q-icon>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Profile</q-item-label>
+            <q-item-label>Flip Profile</q-item-label>
           </q-item-section>
         </q-item>
         <q-item class="text-grey" to="/how" exact clickable>
@@ -114,5 +122,10 @@ export default {
 <style scoped>
 .q-router-link--exact-active{
   color: white !important;
+}
+
+
+.fixed-bottom{
+  position:absolute;
 }
 </style>
