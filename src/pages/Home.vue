@@ -25,7 +25,7 @@
     <div class="q-ml-md text-weight-light text-h6">
       Flip Category
     </div>
-      <div class="row justify-center q-ma-md">
+      <div class="row justify-center q-ma-md">{{categories}}
           <q-btn class="q-ma-xs" glossy rounded color="primary" label="#10,000" @click="flipAction(10000)"/>
           <q-btn class="q-ma-xs" glossy rounded color="black" label="#5,000" @click="flipAction(5000)"/>
           <q-btn class="q-ma-xs" glossy rounded color="primary" label="#1,000" @click="flipAction(1000)"/>
@@ -119,7 +119,7 @@ export default {
   },
   data() {
     return {
-      category: '',
+      categories: '',
       // for Carousel
       slide: 'gamer1',
       navigation: true,
@@ -174,7 +174,18 @@ export default {
     user() { return this.$store.getters['auth/user'] }
   },
 
+  mounted() {
+    this.getCategories();
+  },
+
   methods:{
+    async getCategories(){
+       const endPoint = await this.$axios.get(process.env.Api + "api/category");
+      // pass the requetsed data to a vareable
+      const res = endPoint.data;
+      this.categories = res.data
+    },
+
     flipAction(category){
       this.category = category
       console.log('Category clicked', this.category)
