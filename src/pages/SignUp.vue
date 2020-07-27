@@ -5,11 +5,11 @@
             Sign Up to Flipstar
         </div>
       <form @submit.prevent="signUp">
-          <q-input v-model="form.flipName" name="flipName" label="Choose a Flip Name"/>
+          <q-input v-model="form.name" name="flipName" label="Choose a Flip Name"/>
           <q-input v-model="form.mobileNo" name="mobileNo" label="Mobile Number:"/>
           <q-input v-model="form.email" name="email" label="Email"/>
           <q-input v-model="form.password" type="password" name="password" label="Password" />
-          <q-input v-model="form.confirmPassword" type="password" name="confirmPassword" label="Confirm Password" />
+          <q-input v-model="form.password_confirmation" type="password" name="confirmPassword" label="Confirm Password" />
           <small class="text-red">{{comparePasswords}}</small>
 
         <q-space/>
@@ -24,16 +24,15 @@
 <script>
 
 export default {
-
   name: 'SignUp',
   data () {
     return {
       form:{
-        flipName: '',
+        name: '',
         mobileNo: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        password_confirmation: ''
       }
     }
   },
@@ -44,12 +43,12 @@ export default {
             this.form.mobileNo !== '' &&
             this.form.email !== '' &&
             this.form.password !== '' &&
-            this.form.confirmPassword !== '' &&
-            this.form.password == this.form.confirmPassword
+            this.form.password_confirmation !== '' &&
+            this.form.password == this.form.password_confirmation
     },
 
     comparePasswords () {
-      return this.form.password !== this.form.confirmPassword ? 'Password Mismatch' : ''
+      return this.form.password !== this.form.password_confirmation ? 'Password Mismatch' : ''
     }
   },
 

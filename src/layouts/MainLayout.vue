@@ -77,7 +77,7 @@
             <q-item-label>How to Flip</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item class="text-grey" clickable @click="signOut" v-if="isLoggedIn">
+        <q-item class="text-grey" clickable @click="logOut()" v-if="isLoggedIn">
           <q-item-section avatar>
             <q-icon name=""></q-icon>
           </q-item-section>
@@ -111,10 +111,9 @@ export default {
   },
 
   methods: {
-    signOut: () =>{
-      this.$store.commit('auth/logout')
+    logOut(){
+       this.$store.commit('auth/logout')
     }
-
   }
 }
 </script>

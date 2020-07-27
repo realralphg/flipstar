@@ -25,6 +25,10 @@
                         <q-chip clickable @click="updateDialog=true" icon="star_outline">Update Profile/Cashout Details</q-chip>
                     </div>
 
+                    <div class="row justify-center">
+                        <Account />
+                    </div>
+
                     <div class="row justify-center text-h9 text-warning">
                         Everyday is a good day to WIN!
                     </div>
@@ -70,12 +74,14 @@
 <script>
 import UpdateDialog  from '../components/FlipDialogs/UpdateDialog'
 import TopupDialog  from '../components/FlipDialogs/TopupDialog'
+import Account  from '../components/FlipDialogs/Account'
 import CashoutDialog  from '../components/FlipDialogs/CashoutDialog'
     export default {
         components: {
             UpdateDialog,
             TopupDialog,
-            CashoutDialog
+            CashoutDialog,
+            Account
         },
 
         data(){

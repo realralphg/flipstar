@@ -11,7 +11,7 @@
                 <p>Cash-Out</p>
             </div>
 
-            <div>                
+            <div>
                 <q-input v-model="email" name="email" label="Email:"/>
                 <q-input v-model="withdrawAmt" mask="#.##" reverse-fill-mask input-class="text-right" label="Withdraw Amount:"/>
                 <span class="text-warning text-center"><small>Cash withdrawn is paid into your Bank Account.</small></span>
@@ -29,7 +29,7 @@
     export default {
         data(){
             return{
-                wallet: 1300,                
+                wallet: 1300,
                 email: null,
                 withdrawAmt: null,
             }
@@ -41,9 +41,17 @@
 
         methods: {
             withdraw(){
-
+              this.$axios.post('https://api.paystack.co/transfer',{
+                  "source": "balance",
+                  "reason": "withdrawals",
+                  "amount": this.withdrawAmt,
+                  "recipient": this.$store.getters['auth/user'].email
+              }, {
+              headers: {
+                Authorization: 'Bearer pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81', //the token is a variable which holds the token
+              }})
             }
-                }
+        }
 
     }
 </script>

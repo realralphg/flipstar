@@ -1,51 +1,58 @@
 <template>
     <div>
-        <q-card class="bg-grey-10" style="width: 300px">
-          <q-card-section class="q-pt-none">
-            <div class="q-ml-md text-weight-light text-h6 text-center text-grey">
-                Create New Flip
-            </div>
+      <q-chip clickable @click="open = true" icon="star_outline">
+        Start a flip
+      </q-chip>
 
-            <div class="q-ml-md text-weight-light text-h5 text-center text-warning">
-                <p>Wallet: <br> #{{wallet}} </p>
-            </div>
+        <q-dialog v-model="open">
+          <q-card class="bg-grey-10" style="width: 300px">
+            <q-card-section class="q-pt-none">
+              <div class="q-ml-md text-weight-light text-h6 text-center text-grey">
+                  Create New Flip
+              </div>
 
-            <!-- Flip Category -->
-            <div class="bg-grey-6 q-pa-none rounded-borders">
-                <span class="q-pl-sm">Choose Flip Category:</span>
-                <q-option-group
-                name="category"
-                v-model="category"
-                :options="options"
-                color="primary"
-                inline
-                />
-            </div>
+              <div class="q-ml-md text-weight-light text-h5 text-center text-warning">
+                  <p>Wallet: <br> #{{user.wallet.amount}} </p>
+              </div>
 
-            <!-- Flip Stars -->
-            <div>
-                <div class="row justify-center">
-                    <q-chip color="red-10" text-color="white" icon="star_half">
-                        Click 1, 2 or 3 stars to Flip
-                    </q-chip>
-                </div>
+              <!-- Flip Category -->
+              <div class="bg-grey-6 q-pa-none rounded-borders">
+                  <span class="q-pl-sm">Choose Flip Category:</span>
+                  <q-option-group
+                  name="category"
+                  v-model="form.category"
+                  :options="options"
+                  color="primary"
+                  inline
+                  />
+              </div>
 
-                <div class="row justify-center">
-                    <q-rating v-model="ratingModel"
-                        size="5em" color="warning" icon="star_border" icon-selected="star" :max="3"
-                    />
-                    <p class="text-primary text-grey">You're about to flip {{ratingModel}} star(s)</p>
-                </div>
-            </div>
-          </q-card-section>
+              <!-- Flip Stars -->
+              <div>
+                  <div class="row justify-center">
+                      <q-chip color="red-10" text-color="white" icon="star_half">
+                          Click 1, 2 or 3 stars to Flip
+                      </q-chip>
+                  </div>
 
-          <q-separator color="grey"/>
+                  <div class="row justify-center">
+                      <q-rating v-model="form.ratingModel"
+                          size="5em" color="warning" icon="star_border" icon-selected="star" :max="3"
+                      />
+                      <p class="text-primary text-grey">You're about to flip {{form.ratingModel}} star(s)</p>
+                  </div>
+              </div>
+            </q-card-section>
 
-          <q-card-actions align="right" class="row bg-grey-10 text-grey">
-              <p class="q-pr-md text-warning"> Flip: {{category}}</p>
-            <q-btn outline color="warning" label="Flip" @click="newFlip"/>
-          </q-card-actions>
-        </q-card>
+            <q-separator color="grey"/>
+
+            <q-card-actions align="right" class="row bg-grey-10 text-grey">
+              <p class="q-pr-md text-warning"> Flip: {{ form.category }}</p>
+              <q-btn outline color="warning" label="Create Flip" @click="createGame()"/>
+            </q-card-actions>
+          </q-card>
+        </q-dialog>
+
     </div>
 </template>
 
@@ -53,9 +60,11 @@
     export default {
         data(){
             return{
-                wallet: 1300,
-                category: '',
-                ratingModel: 0,
+                open: false,
+                form:{
+                  ratingModel: 0,
+                  category: '',
+                },
                 options: [
                     {
                     label: '#10,000',
@@ -85,14 +94,14 @@
             }
         },
 
+        computed: {
+          user(){ return this.$store.getters['auth/user']}
+        },
+
         methods:{
-            newFlip(){
-                if(Number(this.category) > this.wallet){
-                    console.log('Not Enough Funds')
-                }else{
-                    this.wallet -= this.category
-                    console.log('Flippng Ready - Push to Flip List')
-                }
+            createGame(){
+                this.$axios.post(process.env.Api + 'api/game', this.form)
+                this.open = false
             }
         }
     }

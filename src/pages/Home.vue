@@ -42,9 +42,9 @@
       <q-chip clickable @click="flipList=true" color="primary" text-color="white" icon="star_half">
         Join a flip
       </q-chip>
-      <q-chip clickable @click="newFlip=true" icon="star_outline">
-        Start a flip
-      </q-chip>
+
+      <NewFlipDialog/>
+
       <q-chip clickable @click="refreshFeed" color="teal" text-color="white" icon="autorenew">
         Refresh
       </q-chip>
@@ -54,15 +54,12 @@
         <FlipListDialog/>
       </q-dialog>
 
-      <q-dialog v-model="newFlip">
-        <NewFlipDialog/>
-      </q-dialog>
     </div>
 
 <!-- List of Current Flippers -->
     <div class="q-ml-md text-weight-light text-h6">
       Currently flippin' ...
-    </div>
+    </div>{{ games }}
 
     <q-list bordered >
 
@@ -120,6 +117,7 @@ export default {
   data() {
     return {
       categories: '',
+      games: '',
       // for Carousel
       slide: 'gamer1',
       navigation: true,
@@ -127,7 +125,6 @@ export default {
 
       // for Dialogs
       flipList: false,
-      newFlip: false,
 
       slideData: [
         {
@@ -176,6 +173,7 @@ export default {
 
   mounted() {
     this.getCategories();
+    this.getGames();
   },
 
   methods:{
@@ -184,6 +182,13 @@ export default {
       // pass the requetsed data to a vareable
       const res = endPoint.data;
       this.categories = res.data
+    },
+
+     async getGames(){
+       const endPoint = await this.$axios.get(process.env.Api + "api/game");
+      // pass the requetsed data to a vareable
+      const res = endPoint.data;
+      this.games = res.data
     },
 
     flipAction(category){
