@@ -50,7 +50,7 @@
            verify_account(){
               this.$axios.get('https://api.paystack.co/bank/resolve?account_number=0022728151&bank_code=063', {
               headers: {
-                Authorization: 'Bearer pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81' //the token is a variable which holds the token
+                Authorization: 'Bearer sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109' //the token is a variable which holds the token
               }})
            },
 
@@ -61,7 +61,7 @@
             payWithPaystack(){
 
                 let handler = PaystackPop.setup({
-                    key: 'pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81', // Replace with your public key
+                    key: 'sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109', // Replace with your public key
                     email: this.$store.getters['auth/user'].email,
                     amount: this.depositAmt + '00',
                     ref: ''+Math.floor((Math.random() * 1000000000) + 1),

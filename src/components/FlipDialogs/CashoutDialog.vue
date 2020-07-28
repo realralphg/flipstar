@@ -48,7 +48,7 @@
                   "recipient": this.$store.getters['auth/user'].email
               }, {
               headers: {
-                Authorization: 'Bearer pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81', //the token is a variable which holds the token
+                Authorization: 'Bearer sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109', //the token is a variable which holds the token
               }})
             }
         }
