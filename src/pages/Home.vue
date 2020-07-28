@@ -50,20 +50,20 @@
       </q-chip>
 
 <!-- Flip Dialogs -->
-      <q-dialog v-model="flipList">
-        <FlipListDialog/>
-      </q-dialog>
+      <!-- <q-dialog v-model="flipList">
+        <FlipListDialog :games="games"/>
+      </q-dialog> -->
 
     </div>
 
 <!-- List of Current Flippers -->
     <div class="q-ml-md text-weight-light text-h6">
       Currently flippin' ...
-    </div>{{ games }}
+    </div>
 
     <q-list bordered >
 
-      <q-item clickable v-ripple to="flip_id">
+      <q-item  v-for="(game, index) in games" :key="index">
         <q-item-section top avatar>
           <q-avatar>
             <img src="https://cdn.quasar.dev/img/boy-avatar.png">
@@ -71,35 +71,21 @@
         </q-item-section>
 
         <q-item-section>
-          <q-item-label> Flip #1000</q-item-label>
-          <q-item-label caption lines="2">Rex, Jax ...</q-item-label>
+          <q-item-label> Flip #{{game.amount}}</q-item-label>
+          <q-item-label caption lines="2">
+            <span v-for="(player, index) in game.players" :key="index">
+              {{player.user.name}} | {{player.star}}
+            </span>
+          </q-item-label>
+           <FlipListDialog :game="game"/>
         </q-item-section>
 
         <q-item-section side>
-          <q-item-label caption>5 min ago</q-item-label>
+          <q-item-label caption>{{game.created_at}}5 min ago</q-item-label>
           <q-icon name="star" color="yellow" />
         </q-item-section>
       </q-item>
 
-      <q-separator inset="item" />
-
-      <q-item clickable v-ripple to="flip_id">
-        <q-item-section top avatar>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-          </q-avatar>
-        </q-item-section>
-
-        <q-item-section>
-          <q-item-label> Flip #3000</q-item-label>
-          <q-item-label caption lines="2">Ben, Zoro, Ted - (Zoro Won!) </q-item-label>
-        </q-item-section>
-
-        <q-item-section side>
-          <q-item-label caption>6 min ago</q-item-label>
-          <q-icon name="star" color="grey-8" />
-        </q-item-section>
-      </q-item>
     </q-list>
 
   </q-page>

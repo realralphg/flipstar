@@ -1,63 +1,83 @@
 <template>
     <div>
-        <q-card class="bg-grey-10" style="width: 300px">
+       <q-btn color="primary" label="View" @click="open = true" />
+
+        <q-dialog v-model="open">
+        <q-card class="bg-grey-10" style="max-width: 400px">
           <q-card-section class="q-pt-none">
-            <!-- List of Current Flippers -->
-            <div class="q-ml-md text-weight-light text-h6 text-warning">
-                Currently Flippin' ...
+            <div class="q-ml-md text-weight-light text-h6 text-center text-grey">
+                Join This Flip (#{{game.amount}})
             </div>
 
-            <q-list class="text-warning" bordered>
-                <q-item clickable v-ripple to="flip_id">
-                    <q-item-section top avatar>
-                        <q-avatar>
-                            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-                        </q-avatar>
-                    </q-item-section>
+            <div class="q-ml-md text-weight-light text-h5 text-center text-warning">
+                <p>Wallet: <br> #{{user.wallet.amount}} </p>
+            </div>
 
-                    <q-item-section>
-                        <q-item-label> Flip #1000</q-item-label>
-                        <q-item-label class="text-grey-5" caption lines="2">Rex, Jax ...</q-item-label>
-                    </q-item-section>
+            <!-- Flip Stars -->
+            <div>
+                <div class="row justify-center">
+                    <q-chip color="red-10" text-color="white" icon="star_half">
+                        Click 1, 2 or 3 stars to flip
+                    </q-chip>
+                </div>
 
-                    <q-item-section side>
-                        <q-item-label class="text-grey" caption>5 min ago</q-item-label>      
-                        <q-icon name="star" color="yellow" />
-                    </q-item-section>
-                </q-item>
+                <div class="row justify-center">
+                    <q-banner rounded class="bg-primary text-warning">
+                       <span v-for="(player, index) in game.players" :key="index">
+                        {{player.user.name}} already flipped {{player.star}} star
+                      </span>
+                    </q-banner>
+                </div>
 
-                <q-separator color="grey" inset="item" />
-
-                <q-item clickable v-ripple to="flip_id">
-                    <q-item-section top avatar>
-                        <q-avatar>
-                            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
-                        </q-avatar>
-                    </q-item-section>
-
-                    <q-item-section>
-                        <q-item-label> Flip #3000</q-item-label>
-                        <q-item-label class="text-grey-5" caption lines="2">Ben, Zoro, Ted - (Zoro Won!) </q-item-label>
-                    </q-item-section>
-
-                    <q-item-section side>
-                        <q-item-label class="text-grey" caption>6 min ago</q-item-label>      
-                        <q-icon name="star" color="grey-8" />
-                    </q-item-section>
-                </q-item>
-            </q-list>
+                <div class="row justify-center">
+                    <q-rating
+                        v-model="ratingModel"
+                        size="5em"
+                        color="warning"
+                        icon="star_border"
+                        icon-selected="star"
+                        :max="3"
+                    />
+                    <p class="text-grey">You're about to flip {{ratingModel}} star(s)</p>
+                </div>
+            </div>
           </q-card-section>
 
-          <q-card-actions align="right" class="bg-grey-10 text-grey">
-            <q-btn color="warning" flat label="Cancel" v-close-popup />
+            <q-separator  color="grey"/>
+
+          <q-card-actions align="right" class="row bg-white text-primary bg-grey-10">
+              <p class="q-pr-md text-grey"> Flip {{game.amount}}</p>
+            <q-btn outline color="warning" label="Flip" @click="newFlip"/>
           </q-card-actions>
         </q-card>
+        </q-dialog>
+
     </div>
 </template>
 
 <script>
     export default {
-        
+      props:['game'],
+      data() {
+        return {
+          open: false
+        }
+      },
+
+      computed:{
+        user() { return this.$store.getters['auth/user'] }
+      },
+
+       methods:{
+            newFlip(){
+                if(Number(this.category) > this.wallet){
+                    console.log('Not Enough Funds')
+                }else{
+                    this.wallet -= this.category
+                    console.log('Flippng Ready - Push to Flip List')
+                }
+            }
+        }
     }
 </script>
 
