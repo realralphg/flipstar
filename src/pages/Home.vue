@@ -73,16 +73,19 @@
         <q-item-section>
           <q-item-label> Flip #{{game.amount}}</q-item-label>
           <q-item-label caption lines="2">
+            flippers: 
             <span v-for="(player, index) in game.players" :key="index">
-              {{player.user.name}} | {{player.star}}
+              {{player.user.name}}
             </span>
           </q-item-label>
-           <FlipListDialog :game="game"/>
         </q-item-section>
 
         <q-item-section side>
           <q-item-label caption>{{game.created_at}}5 min ago</q-item-label>
-          <q-icon name="star" color="yellow" />
+         <div class="row no-wrap">
+            <FlipListDialog :game="game"/>
+            <q-icon name="star" color="yellow" />
+         </div>
         </q-item-section>
       </q-item>
 

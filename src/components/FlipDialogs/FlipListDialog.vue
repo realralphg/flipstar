@@ -1,6 +1,6 @@
 <template>
     <div>
-       <q-btn color="primary" label="View" @click="open = true" />
+       <q-btn size="sm" color="primary" label="View" @click="open = true" />
 
         <q-dialog v-model="open">
         <q-card class="bg-grey-10" style="max-width: 400px">
