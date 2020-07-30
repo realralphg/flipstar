@@ -2,7 +2,7 @@
   <q-page class="bg-grey-10">
 <!-- FIRSTPicture -->    
     <div class="q-pa-md">
-        <q-parallax :height="300" :speed="0.9">
+        <q-parallax :height="300" :speed="3.5">
             <template v-slot:media>
                 <img src="images/flippic2.jpg">
             </template>
@@ -12,7 +12,7 @@
                 <span class="text-weight-"> The Money Game! </span>
             </p>
             <div class="in-line-block">
-                <q-btn no-caps to="signup" class="q-mr-sm" color="warning" label="SignUp"/>
+                <q-btn no-caps to="/signup" class="q-mr-sm" color="warning" label="SignUp"/>
                 <q-btn no-caps to="/signin" outline color="primary" label="SignIn"/>
             </div>
         </q-parallax>
@@ -54,8 +54,8 @@
     </div>
 
     <!-- SECOND Picture -->
-    <div class="q-pa-md">
-        <q-parallax :height="300" :speed="0.9">
+    <div class="q-pa-md q-mb-none">
+        <q-parallax :height="300" :speed="2.5">
             <template v-slot:media>
                 <img src="images/flippic1.jpg">
             </template>
@@ -68,8 +68,8 @@
     </div>
 
 <!-- THIRD Picture -->
-    <div class="q-pa-md">
-        <q-parallax :height="300" :speed="0.9">
+    <div class="q-pa-md q-mt-none">
+        <q-parallax :height="300" :speed="2.5">
             <template v-slot:media>
                 <img src="images/flippic3.jpg">
             </template>
@@ -79,8 +79,8 @@
                 <span class="text-weight-"> The Money Game! </span>
             </p>
             <div class="in-line-block">
-                <q-btn no-caps to="signup" class="q-mr-sm" color="warning" label="SignUp"/>
-                <q-btn no-caps to="signin" outline color="primary" label="SignIn"/>
+                <q-btn no-caps to="/signup" class="q-mr-sm" color="warning" label="SignUp"/>
+                <q-btn no-caps to="/signin" outline color="primary" label="SignIn"/>
             </div>
         </q-parallax>
     </div>
