@@ -24,8 +24,9 @@
       </q-toolbar>
     </q-header>
 
+<!-- Footer -->
     <q-footer>
-      <div class="text-center bg-grey-10">
+      <div class="text-center bg-black">
         <div>Copyright 2020</div>
         <div class="text-grey-6">Greysoft Technologies</div>
       </div>
