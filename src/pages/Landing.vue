@@ -8,10 +8,10 @@
             </template>
 
             <p class="text-center text-h4 text-white q-pt-xl q-mt-xl q-mb-none">
-                <span class="text-weight-bolder"> Flip Star </span> <br>
-                <span class="text-weight-"> The Money Game! </span>
+                <span class="shade text-weight-bolder"> Flip Star </span> <br>
+                <span class="shade text-weight-"> The Money Game! </span>
             </p>
-            <div class="in-line-block">
+            <div class="btn in-line-block">
                 <q-btn no-caps to="/signup" class="q-mr-sm" color="warning" label="SignUp"/>
                 <q-btn no-caps to="/signin" outline color="primary" label="SignIn"/>
             </div>
@@ -55,13 +55,13 @@
 
     <!-- SECOND Picture -->
     <div class="q-pa-md q-mb-none">
-        <q-parallax :height="300" :speed="2.5">
+        <q-parallax :height="300" :speed="1.5">
             <template v-slot:media>
                 <img src="images/flippic1.jpg">
             </template>
 
             <p class="text-center text-h5 text-primary q-pt-xl q-mt-xl q-mb-none">
-                <span class="text-weight-bolder text-warning"> Over 10,000 flippers daily! </span> <br>
+                <span class="shade text-weight-bolder text-warning"> Over 10,000 flippers daily! </span> <br>
                 <span class="text-weight-"> #100, #300, #500, <br> #1,000, #5,000, #10,000 </span>
             </p>
         </q-parallax>
@@ -75,10 +75,10 @@
             </template>
 
             <p class="text-center text-h4 text-warning q-pt-xl q-mt-xl q-mb-none">
-                <span class="text-weight-bolder"> Flip Star </span> <br>
-                <span class="text-weight-"> The Money Game! </span>
+                <span class="shade text-weight-bolder"> Flip Star </span> <br>
+                <span class="shade text-weight-"> The Money Game! </span>
             </p>
-            <div class="in-line-block">
+            <div class="btn in-line-block">
                 <q-btn no-caps to="/signup" class="q-mr-sm" color="warning" label="SignUp"/>
                 <q-btn no-caps to="/signin" outline color="primary" label="SignIn"/>
             </div>
@@ -104,3 +104,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.shade{  
+    text-align: center;
+    padding: 3px;
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 5px 0px 5px 0px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}  
+
+.btn{
+    margin-top: 5px;
+}
+</style>>
