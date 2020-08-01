@@ -24,7 +24,7 @@
                 </q-card-actions> -->
 
                 <paystack
-                  :amount="amount"
+                  :amount="amount + '00'"
                   :email="user.email"
                   :paystackkey="paystackkey"
                   :reference="reference"
@@ -49,7 +49,7 @@
             return{
               open: false,
               paystackkey: "pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81", //paystack public key
-              amount: 1000000 // in kobo
+              amount: '' // in kobo
             }
         },
 
