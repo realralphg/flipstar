@@ -9,7 +9,7 @@
                 </q-avatar>
 
                 <div class="q-ml-md text-weight-light text-h5 text-center text-warning">
-                    <p>Your Wallet: #{{wallet}} </p>
+                    <p>Your Wallet: #{{user.wallet.amount}} </p>
                 </div>
 
                 <div class="q-pt-none">
@@ -51,10 +51,8 @@
             <q-card-actions>
                 <q-btn flat round icon="payment" color="warning" />
                 <TopupDialog />
+                <CashoutDialog />
 
-                <q-btn flat color="warning" @click="cashoutDialog=true">
-                    Cash-out
-                </q-btn>
                 <q-space/>
                 <q-btn to="/home" outline color="warning"> Go Flip </q-btn>
             </q-card-actions>
@@ -65,9 +63,6 @@
             <UpdateDialog/>
         </q-dialog>
 
-        <q-dialog v-model="cashoutDialog">
-            <CashoutDialog/>
-        </q-dialog>
     </div>
 </template>
 
@@ -90,11 +85,12 @@ import CashoutDialog  from '../components/FlipDialogs/CashoutDialog'
                 stars: 4,
                 vipStatus: '',
                 updateDialog: false,
-                topupDialog: false,
-                cashoutDialog: false,
-
             }
-        }
+        },
+
+        computed: {
+          user() {return this.$store.getters['auth/user']}
+        },
 
     }
 </script>

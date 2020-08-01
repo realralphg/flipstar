@@ -70,13 +70,19 @@
       },
 
        methods:{
-          newFlip(){
-              if(Number(this.category) > this.wallet){
-                  console.log('Not Enough Funds')
-              }else{
-                  this.wallet -= this.category
-                  console.log('Flippng Ready - Push to Flip List')
-              }
+          async newFlip(){
+              // if(Number(this.category) > this.wallet){
+              //     console.log('Not Enough Funds')
+              // }else{
+              //     this.wallet -= this.category
+              //     console.log('Flippng Ready - Push to Flip List')
+              // }
+            const response = this.$axios.post(process.env.Api + 'api/flip', {
+              category: this.game.amount,
+              ratingModel: this.ratingModel,
+              game_id: this.game.id
+            })
+
           }
         }
     }

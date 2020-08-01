@@ -20,7 +20,7 @@
           <q-route-tab no-caps icon="attach_money" to="/how" exact label="How to Flip" class="gt-xs" />
         </q-tabs>
 
-        <q-btn v-if="isLoggedIn" no-caps flat @click="signOut" color="white"> Sign Out </q-btn>
+        <q-btn v-if="isLoggedIn" no-caps flat @click="logOut" color="white"> Sign Out </q-btn>
       </q-toolbar>
     </q-header>
 

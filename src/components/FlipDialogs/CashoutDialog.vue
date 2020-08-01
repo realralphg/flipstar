@@ -1,5 +1,9 @@
 <template>
     <div>
+      <q-btn flat color="warning" @click="open=true">
+            Cash-out
+        </q-btn>
+        <q-dialog v-model="open">
         <q-card style="width: 300px">
           <q-card-section class="q-pt-none">
             <!-- Wallet Fields -->
@@ -22,6 +26,8 @@
             </div>
           </q-card-section>
         </q-card>
+        </q-dialog>
+
     </div>
 </template>
 
@@ -29,9 +35,10 @@
     export default {
         data(){
             return{
-                wallet: 1300,
-                email: null,
-                withdrawAmt: null,
+              open: false,
+              wallet: 1300,
+              email: null,
+              withdrawAmt: null,
             }
         },
 

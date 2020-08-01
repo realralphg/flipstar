@@ -54,7 +54,7 @@
             },
 
             payWithPaystack(){
-
+                let status = 0;
                 let handler = PaystackPop.setup({
                     key: 'pk_test_0da42c1145ff0e9f70b5d3eea2c07c8ec8d7bd81', // Replace with your public key
                     email: this.$store.getters['auth/user'].email,
@@ -69,18 +69,20 @@
 
                     callback: function(response){
                       let message = 'Payment complete! Reference: ' + response.reference;
-                      alert(message);
-                      this.open = false
+                      status = 1;
+                      alert(message + '  ' + status);
                     }
                 });
-
 
                 handler.openIframe();
 
             },
 
-            withdraw(){
-
+            async creditUser(reference){
+              const response = await this.$axios.post(process.env.Api + 'api/wallet', {
+                amount:this.depositAmt,
+                reference: reference
+              })
             }
         }
 
