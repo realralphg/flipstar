@@ -24,7 +24,7 @@
                 <div class="row justify-center">
                     <q-banner rounded class="bg-primary text-warning">
                        <span v-for="(player, index) in game.players" :key="index">
-                        {{player.user.name}} already flipped {{player.star}} star
+                          {{player.user.name}} already flipped {{player.star}} star
                       </span>
                     </q-banner>
                 </div>
@@ -60,7 +60,8 @@
       props:['game'],
       data() {
         return {
-          open: false
+          open: false,
+          ratingModel: 0
         }
       },
 
@@ -69,14 +70,14 @@
       },
 
        methods:{
-            newFlip(){
-                if(Number(this.category) > this.wallet){
-                    console.log('Not Enough Funds')
-                }else{
-                    this.wallet -= this.category
-                    console.log('Flippng Ready - Push to Flip List')
-                }
-            }
+          newFlip(){
+              if(Number(this.category) > this.wallet){
+                  console.log('Not Enough Funds')
+              }else{
+                  this.wallet -= this.category
+                  console.log('Flippng Ready - Push to Flip List')
+              }
+          }
         }
     }
 </script>

@@ -18,6 +18,7 @@
                 <q-img :src="slide.imageUrl" height="150px"/>
             </div>
         </q-carousel-slide>
+
       </q-carousel>
     </div>
 <!-- Flip Category -->
@@ -25,7 +26,7 @@
     <div class="q-ml-md text-weight-light text-h6">
       Flip Category
     </div>
-      <div class="row justify-center q-ma-md">{{categories}}
+      <div class="row justify-center q-ma-md">
           <q-btn class="q-ma-xs" glossy rounded color="primary" label="#10,000" @click="flipAction(10000)"/>
           <q-btn class="q-ma-xs" glossy rounded color="black" label="#5,000" @click="flipAction(5000)"/>
           <q-btn class="q-ma-xs" glossy rounded color="primary" label="#1,000" @click="flipAction(1000)"/>
@@ -39,26 +40,16 @@
 
 <!-- Flip Actions Dialogs -->
     <div class="row justify-center q-ma-md">
-      <q-chip clickable @click="flipList=true" color="primary" text-color="white" icon="star_half">
-        Join a flip
-      </q-chip>
-
       <NewFlipDialog/>
 
-      <q-chip clickable @click="refreshFeed" color="teal" text-color="white" icon="autorenew">
+      <q-chip clickable @click="getGames()" color="teal" text-color="white" icon="autorenew">
         Refresh
       </q-chip>
-
-<!-- Flip Dialogs -->
-      <!-- <q-dialog v-model="flipList">
-        <FlipListDialog :games="games"/>
-      </q-dialog> -->
-
     </div>
 
 <!-- List of Current Flippers -->
     <div class="q-ml-md text-weight-light text-h6">
-      Currently flippin' ...
+      Currently flippin ...
     </div>
 
     <q-list bordered >
@@ -73,7 +64,7 @@
         <q-item-section>
           <q-item-label> Flip #{{game.amount}}</q-item-label>
           <q-item-label caption lines="2">
-            flippers: 
+            flippers:
             <span v-for="(player, index) in game.players" :key="index">
               {{player.user.name}}
             </span>
@@ -81,9 +72,9 @@
         </q-item-section>
 
         <q-item-section side>
-          <q-item-label caption>{{game.created_at}}5 min ago</q-item-label>
+          <q-item-label caption>{{formatDate(game.created_at)}}</q-item-label>
          <div class="row no-wrap">
-            <FlipListDialog :game="game"/>
+            <FlipDialog :game="game"/>
             <q-icon name="star" color="yellow" />
          </div>
         </q-item-section>
@@ -95,14 +86,15 @@
 </template>
 
 <script>
-import FlipListDialog  from '../components/FlipDialogs/FlipListDialog'
-import NewFlipDialog  from '../components/FlipDialogs/NewFlipDialog'
-
+import FlipDialog  from 'components/FlipDialogs/FlipDialog'
+import NewFlipDialog  from 'components/FlipDialogs/NewFlipDialog'
+import { date } from 'quasar'
 export default {
   components: {
-    FlipListDialog,
+    FlipDialog,
     NewFlipDialog
   },
+
   data() {
     return {
       categories: '',
@@ -117,40 +109,22 @@ export default {
 
       slideData: [
         {
-          id: '1',
-          name: 'gamer1',
-          imageUrl: 'images/picSlide1.jpg',
-          title: 'Lets Play',
+          id: '1', name: 'gamer1', imageUrl: 'images/picSlide1.jpg', title: 'Lets Play',
         },
         {
-          id: '2',
-          name: 'gamer2',
-          imageUrl: 'images/stars4.jpg',
-          title: 'Lets Play',
+          id: '2', name: 'gamer2', imageUrl: 'images/stars4.jpg', title: 'Lets Play',
         },
         {
-          id: '3',
-          name: 'gamer3',
-          imageUrl: 'images/star8.jpg',
-          title: 'Lets Play',
+          id: '3', name: 'gamer3', imageUrl: 'images/star8.jpg', title: 'Lets Play',
         },
         {
-          id: '4',
-          name: 'gamer4',
-          imageUrl: 'images/picSlide2.jpg',
-          title: 'Lets Play',
+          id: '4', name: 'gamer4', imageUrl: 'images/picSlide2.jpg', title: 'Lets Play',
         },
         {
-          id: '5',
-          name: 'gamer5',
-          imageUrl: 'images/star6.jpg',
-          title: 'Lets Play',
+          id: '5', name: 'gamer5', imageUrl: 'images/star6.jpg', title: 'Lets Play',
         },
         {
-          id: '6',
-          name: 'gamer6',
-          imageUrl: "images/star7.jpg",
-          title: 'Cast Dice',
+          id: '6', name: 'gamer6', imageUrl: "images/star7.jpg", title: 'Cast Dice',
         }
       ]
     }
@@ -179,15 +153,9 @@ export default {
       const res = endPoint.data;
       this.games = res.data
     },
-
-    flipAction(category){
-      this.category = category
-      console.log('Category clicked', this.category)
+    formatDate(data){
+      return date.formatDate(data, 'YYYY-MM-DD')
     },
-
-    refreshFeed(){
-      console.log('Refresh Flip Feed')
-    }
   }
 }
 </script>
