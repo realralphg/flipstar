@@ -18,7 +18,7 @@
                 <q-input v-model="form.bank_id" label="Bank Number" />
 
                 <q-card-actions align="right" class="q-mt-sm">
-                    <q-btn color="primary" label="Pay" @click="verify_account()" />
+                    <q-btn color="primary" label="Validate" @click="verify_account()" />
                     <q-btn color="primary" label="Pay" @click="save_account()" />
                 </q-card-actions>
             </div>
@@ -48,7 +48,7 @@
 
         methods: {
            verify_account(){
-              this.$axios.get('https://api.paystack.co/bank/resolve?account_number=0022728151&bank_code=063', {
+              this.$axios.get('https://api.paystack.co/bank/resolve?account_number=0149634552&bank_code=', {
               headers: {
                 Authorization: 'Bearer sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109' //the token is a variable which holds the token
               }})
