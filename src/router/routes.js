@@ -6,6 +6,11 @@ const routes = [
     children: [
       {
         path: '/',
+        name: 'landing',
+        component: () => import('pages/Landing.vue'),
+      },      
+      {
+        path: '/home',
         name: 'home',
         component: () => import('pages/Home.vue'),
       },    

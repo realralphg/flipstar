@@ -56,7 +56,7 @@
                     Cash-out
                 </q-btn>
                 <q-space/>
-                <q-btn to="/" outline color="warning"> Go Flip </q-btn>
+                <q-btn to="/home" outline color="warning"> Go Flip </q-btn>
             </q-card-actions>
         </q-card>
 
