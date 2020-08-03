@@ -1,6 +1,6 @@
 <template>
     <div>
-      <q-btn flat color="warning" @click="open=true">
+      <q-btn flat color="warning" @click="open = true">
             Cash-out
         </q-btn>
         <q-dialog v-model="open">
@@ -8,7 +8,7 @@
           <q-card-section class="q-pt-none">
             <!-- Wallet Fields -->
             <div class="q-ml-md text-weight-light text-h5 text-center text-primary">
-                <p>Your Wallet: <br> #{{wallet}} </p>
+                <p>Your Wallet: <br> #{{user.wallet.amount}} </p>
             </div>
 
             <div class="text-weight-light text-h6 text-center text-grey-8">
@@ -16,8 +16,8 @@
             </div>
 
             <div>
-                <q-input v-model="email" name="email" label="Email:"/>
-                <q-input v-model="withdrawAmt" mask="#.##" reverse-fill-mask input-class="text-right" label="Withdraw Amount:"/>
+                <q-input v-value="user.email" name="email" label="Email:"/>
+                <q-input v-model="form.amount" label="Withdraw Amount"/>
                 <span class="text-warning text-center"><small>Cash withdrawn is paid into your Bank Account.</small></span>
 
                 <q-card-actions align="right" class="q-mt-sm">
@@ -36,9 +36,9 @@
         data(){
             return{
               open: false,
-              wallet: 1300,
-              email: null,
-              withdrawAmt: null,
+              form:{
+                amount: null,
+              }
             }
         },
 
@@ -47,16 +47,13 @@
         },
 
         methods: {
-            withdraw(){
-              this.$axios.post('https://api.paystack.co/transfer',{
-                  "source": "balance",
-                  "reason": "withdrawals",
-                  "amount": this.withdrawAmt,
-                  "recipient": this.$store.getters['auth/user'].email
-              }, {
-              headers: {
-                Authorization: 'Bearer sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109', //the token is a variable which holds the token
-              }})
+            async withdraw(){
+              try {
+                const response = this.$axios.post(process.env.Api + 'api/withdrawals', this.form)
+                const data = response
+              } catch (error) {
+
+              }
             }
         }
 

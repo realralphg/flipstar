@@ -2,11 +2,8 @@
   <q-page class="bg-grey">
     <div>
       <q-carousel
-        v-model="slide"
-        swipeable
-        animated
-        infinite
-        autoplay
+        v-model="slide" swipeable
+        animated  infinite autoplay
 
         :navigation-position="navPos"
         height="150px"
@@ -41,7 +38,6 @@
 <!-- Flip Actions Dialogs -->
     <div class="row justify-center q-ma-md">
       <NewFlipDialog/>
-
       <q-chip clickable @click="getGames()" color="teal" text-color="white" icon="autorenew">
         Refresh
       </q-chip>
@@ -52,7 +48,7 @@
       Currently flippin ...
     </div>
 
-    <q-list bordered >
+    <q-list bordered>
 
       <q-item  v-for="(game, index) in games" :key="index">
         <q-item-section top avatar>
@@ -62,17 +58,17 @@
         </q-item-section>
 
         <q-item-section>
-          <q-item-label> Flip #{{game.amount}}</q-item-label>
+          <q-item-label> Flip #{{ game.amount }} </q-item-label>
           <q-item-label caption lines="2">
             flippers:
             <span v-for="(player, index) in game.players" :key="index">
-              {{player.user.name}}
+              {{player.user.name}},
             </span>
           </q-item-label>
         </q-item-section>
 
         <q-item-section side>
-          <q-item-label caption>{{formatDate(game.created_at)}}</q-item-label>
+          <q-item-label caption>{{ formatDate(game.created_at) }}</q-item-label>
          <div class="row no-wrap">
             <FlipDialog :game="game"/>
             <q-icon name="star" color="yellow" />

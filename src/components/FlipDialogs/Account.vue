@@ -1,7 +1,7 @@
 <template>
     <div>
 
-      <q-badge color="orange" @click="open = true" label="Add Account" />
+      <q-badge :color="account ? 'primary' : 'orange'" @click="open = true" label="Add Account" />
 
 
       <q-dialog v-model="open">
@@ -13,13 +13,13 @@
             </div> -->
 
             <div>
-                <q-input v-model="form.account" name="account" label="Account Number"/>
+                <q-input v-model="form.account_number" name="account" label="Account Number"/>
                 <q-input v-model="form.account_name" label="Account Name" />
-                <q-input v-model="form.bank_id" label="Bank Number" />
+                <q-input v-model="form.bank_name" label="Bank Name" />
+                <q-input v-model="form.bank_branch" label="Bank Branch" />
 
                 <q-card-actions align="right" class="q-mt-sm">
-                    <q-btn color="primary" label="Validate" @click="verify_account()" />
-                    <q-btn color="primary" label="Pay" @click="save_account()" />
+                    <q-btn color="primary" label="Save Account" @click="save_account()" />
                 </q-card-actions>
             </div>
           </q-card-section>
@@ -34,10 +34,12 @@
         data(){
             return{
               open: false,
+              account: {},
               form:{
-                account: '',
+                account_number: '',
                 account_name: '',
-                bank_id: ''
+                bank_name: '',
+                bank_branch: ''
               }
             }
         },
@@ -46,47 +48,22 @@
             user(){ return this.$store.getters['auth/user']}
         },
 
+        mounted() {
+          this.getAccount();
+        },
+
         methods: {
-           verify_account(){
-              this.$axios.get('https://api.paystack.co/bank/resolve?account_number=0149634552&bank_code=', {
-              headers: {
-                Authorization: 'Bearer sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109' //the token is a variable which holds the token
-              }})
+          async save_account(){
+            const response = await this.$axios.post(process.env.Api + 'api/account', this.form)
+            const data = response
            },
 
-           save_account(){
-
+           async getAccount(){
+            const response = await this.$axios.get(process.env.Api + 'api/account/1')
+            const data = response
+            this.account = data.data
+            this.form.account_number = data.data.account_number
            },
-
-            payWithPaystack(){
-
-                let handler = PaystackPop.setup({
-                    key: 'sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109', // Replace with your public key
-                    email: this.$store.getters['auth/user'].email,
-                    amount: this.depositAmt + '00',
-                    ref: ''+Math.floor((Math.random() * 1000000000) + 1),
-                    // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-                    // label: "Optional string that replaces customer email"
-
-                    // onClose: function(){
-                    //     alert('Window closed.');
-                    // },
-
-                    callback: function(response){
-                      let message = 'Payment complete! Reference: ' + response.reference;
-                      alert(message);
-                      this.open = false
-                    }
-                });
-
-
-                handler.openIframe();
-
-            },
-
-            withdraw(){
-
-            }
         }
 
     }

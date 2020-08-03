@@ -7,7 +7,7 @@
           <q-card-section class="q-pt-none">
             <!-- Wallet Fields -->
             <div class="q-ml-md text-weight-light text-h5 text-center text-primary">
-                <p>Your Wallet: <br> #{{user.wallet.amount}} </p>
+                <p>Your Wallet: <br> #{{ user.wallet.amount}} </p>
             </div>
 
             <div class="text-weight-light text-h6 text-center text-grey-8">
@@ -31,7 +31,8 @@
                   :callback="callback"
                   :close="close"
                   :embed="false"
-              >
+                  class=""
+                >
                 <i class="fas fa-money-bill-alt"></i>
                 Make Payment
               </paystack>
@@ -75,15 +76,22 @@
             callback: function(response){
               this.creditUser(response);
             },
+
             close: function(){
                 console.log("Payment closed")
             },
 
             async creditUser(reference){
               const response = await this.$axios.post(process.env.Api + 'api/wallet', {
-                amount:this.depositAmt,
-                reference: reference
+                amount: this.amount,
+                reference: reference.reference,
+                message: reference.message,
+                trans: reference.trans,
+                trxref: reference.trxref,
+                status: reference.status
               })
+
+              this.open = false
             }
         }
 

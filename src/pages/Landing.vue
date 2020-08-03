@@ -1,8 +1,8 @@
 <template>
   <q-page class="bg-grey-10">
-<!-- FIRSTPicture -->    
+<!-- FIRSTPicture -->
     <div class="q-pa-md">
-        <q-parallax :height="300" :speed="3.5">
+        <!-- <q-parallax :height="300" :speed="3.5">
             <template v-slot:media>
                 <img src="images/flippic2.jpg">
             </template>
@@ -15,7 +15,7 @@
                 <q-btn no-caps to="/signup" class="q-mr-sm" color="warning" label="SignUp"/>
                 <q-btn no-caps to="/signin" outline color="primary" label="SignIn"/>
             </div>
-        </q-parallax>
+        </q-parallax> -->
     </div>
 
     <!-- Three Cards -->
@@ -25,10 +25,10 @@
           <q-icon class="q-pb-sm q-pl-sm" name="star_half" size="30px"/>
           <q-icon class="q-pb-sm q-pl-sm" name="star_half" size="30px"/>
           <q-icon class="q-pb-sm q-pl-sm" name="star_half" size="30px"/> <br>
-          <span class="text-primary" style="float: right"><b>...TO DOUBLE YOUR MONEY</b></span>          
+          <span class="text-primary" style="float: right"><b>...TO DOUBLE YOUR MONEY</b></span>
       </q-card>
 
-      <q-card class="q-pa-md text-black bg-primary" style="max-width: 250px"> 
+      <q-card class="q-pa-md text-black bg-primary" style="max-width: 250px">
           <div class="row justify-center">
               <q-chip color="red-10" text-color="white" icon="star_half">
                   Click 1, 2 or 3 stars to Flip ...
@@ -50,11 +50,11 @@
           <span class="text-h3 text-weight-light">CASH OUT <br> </span>
           <span class="text-h5 text-primary" style="float: right"><b>...ANYTIME!</b> </span>
           <span class="text-primary" style="float: right"><b>Everyday is a good day to WIN!</b> </span>
-      </q-card>      
+      </q-card>
     </div>
 
     <!-- SECOND Picture -->
-    <div class="q-pa-md q-mb-none">
+    <!-- <div class="q-pa-md q-mb-none">
         <q-parallax :height="300" :speed="1.5">
             <template v-slot:media>
                 <img src="images/flippic1.jpg">
@@ -65,10 +65,10 @@
                 <span class="text-weight-"> #100, #300, #500, <br> #1,000, #5,000, #10,000 </span>
             </p>
         </q-parallax>
-    </div>
+    </div> -->
 
 <!-- THIRD Picture -->
-    <div class="q-pa-md q-mt-none">
+    <!-- <div class="q-pa-md q-mt-none">
         <q-parallax :height="300" :speed="2.5">
             <template v-slot:media>
                 <img src="images/flippic3.jpg">
@@ -82,7 +82,7 @@
                 <q-btn no-caps to="/signup" class="q-mr-sm" color="warning" label="SignUp"/>
                 <q-btn no-caps to="/signin" outline color="primary" label="SignIn"/>
             </div>
-        </q-parallax>
+        </q-parallax> -->
     </div>
 
   </q-page>
@@ -106,14 +106,14 @@ export default {
 </script>
 
 <style scoped>
-.shade{  
+.shade{
     text-align: center;
     padding: 3px;
     background-color: rgba(0, 0, 0, .5);
     border-radius: 5px 0px 5px 0px;
     margin-bottom: 5px;
     margin-right: 5px;
-}  
+}
 
 .btn{
     margin-top: 5px;
