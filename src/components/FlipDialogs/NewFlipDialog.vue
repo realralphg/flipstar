@@ -100,8 +100,13 @@
 
         methods:{
             createGame(){
-                this.$axios.post(process.env.Api + 'api/game', this.form)
-                this.open = false
+                try {
+                    this.$axios.post(process.env.Api + 'api/game', this.form)
+                    this.open = false
+                    
+                } catch (error) {
+                    
+                }
             }
         }
     }

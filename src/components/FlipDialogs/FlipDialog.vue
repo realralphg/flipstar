@@ -24,8 +24,8 @@
                 <div class="row justify-center">
                     <q-banner rounded class="bg-primary text-warning">
                        <span v-for="(player, index) in game.players" :key="index">
-                          {{player.user.name}} already flipped {{player.star}} star
-                      </span>
+                          {{player.user.name}} already flipped {{player.star}} star <br>
+                      </span> 
                     </q-banner>
                 </div>
 
@@ -47,7 +47,7 @@
 
           <q-card-actions align="right" class="row bg-white text-primary bg-grey-10">
               <p class="q-pr-md text-grey"> Flip {{game.amount}}</p>
-            <q-btn outline color="warning" label="Flip" @click="newFlip"/>
+            <q-btn outline color="warning" label="Flip" :disabled="insufficient" @click="newFlip"/>
           </q-card-actions>
         </q-card>
         </q-dialog>
@@ -66,22 +66,29 @@
       },
 
       computed:{
-        user() { return this.$store.getters['auth/user'] }
+        user() { return this.$store.getters['auth/user'] }, 
+
+        insufficient(){
+          const balance = this.$store.getters['auth/user'].wallet.amount  
+          return balance < this.game.amount
+        }
       },
 
        methods:{
-          async newFlip(){
-              // if(Number(this.category) > this.wallet){
-              //     console.log('Not Enough Funds')
-              // }else{
-              //     this.wallet -= this.category
-              //     console.log('Flippng Ready - Push to Flip List')
-              // }
-            const response = this.$axios.post(process.env.Api + 'api/flip', {
-              category: this.game.amount,
-              ratingModel: this.ratingModel,
-              game_id: this.game.id
-            })
+          async newFlip(){    
+            const balance =  this.$store.getters['auth/user'].wallet.amount  
+            
+            try {
+              
+              const response = this.$axios.post(process.env.Api + 'api/flip', {
+                category: this.game.amount,
+                ratingModel: this.ratingModel,
+                game_id: this.game.id                
+              })
+              balance - this.game.amount
+            } catch (error) {
+              console.log(error)
+            }
 
           }
         }

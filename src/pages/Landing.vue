@@ -2,7 +2,7 @@
   <q-page class="bg-grey-10">
 <!-- FIRSTPicture -->
     <div class="q-pa-md">
-        <!-- <q-parallax :height="300" :speed="3.5">
+        <q-parallax :height="300" :speed="0.9">
             <template v-slot:media>
                 <img src="images/flippic2.jpg">
             </template>
@@ -15,7 +15,7 @@
                 <q-btn no-caps to="/signup" class="q-mr-sm" color="warning" label="SignUp"/>
                 <q-btn no-caps to="/signin" outline color="primary" label="SignIn"/>
             </div>
-        </q-parallax> -->
+        </q-parallax>
     </div>
 
     <!-- Three Cards -->
@@ -54,8 +54,8 @@
     </div>
 
     <!-- SECOND Picture -->
-    <!-- <div class="q-pa-md q-mb-none">
-        <q-parallax :height="300" :speed="1.5">
+    <div class="q-pa-md q-mb-none">
+        <q-parallax :height="300" :speed="0.9">
             <template v-slot:media>
                 <img src="images/flippic1.jpg">
             </template>
@@ -65,11 +65,11 @@
                 <span class="text-weight-"> #100, #300, #500, <br> #1,000, #5,000, #10,000 </span>
             </p>
         </q-parallax>
-    </div> -->
+    </div>
 
 <!-- THIRD Picture -->
-    <!-- <div class="q-pa-md q-mt-none">
-        <q-parallax :height="300" :speed="2.5">
+    <div class="q-pa-md q-mt-none">
+        <q-parallax :height="300" :speed="0.9">
             <template v-slot:media>
                 <img src="images/flippic3.jpg">
             </template>
@@ -82,7 +82,7 @@
                 <q-btn no-caps to="/signup" class="q-mr-sm" color="warning" label="SignUp"/>
                 <q-btn no-caps to="/signin" outline color="primary" label="SignIn"/>
             </div>
-        </q-parallax> -->
+        </q-parallax>
     </div>
 
   </q-page>
