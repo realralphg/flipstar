@@ -9,7 +9,10 @@
           <q-input v-model="form.password" type="password" name="password" label="Password" />
           <q-space/>
           <div class="q-mt-sm row justify-right">
-              <q-btn type="submit" no-caps color="primary" @click="login" :disabled="!formIsValid"  >Sign In</q-btn>
+              <q-btn type="submit" no-caps color="primary" @click="login" :disabled="!formIsValid">
+                Sign In
+                <q-spinner-ios v-if="loading" color="grey" size="1em"/>
+              </q-btn>
           </div>
       </form>
     </div>
@@ -25,7 +28,8 @@ export default {
       form:{
         email: '',
         password: ''
-      }
+      },
+      loading: false
     }
   },
 
@@ -38,6 +42,7 @@ export default {
 
   methods: {
     async login(){
+      this.loading = true
       // querry the backend for login
       const endPoint = await this.$axios.post(process.env.Api + "api/login", this.form);
       // pass the requetsed data to a vareable

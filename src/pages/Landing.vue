@@ -42,7 +42,9 @@
           </div>
 
           <div class="row justify-center q-mt-md">
-            <q-btn rounded outline to="/how" color="warning" label="How to Flip"/>
+            <q-btn rounded outline to="/how" color="warning" label="How to Flip" @click="loading=true">
+                <q-spinner-ios v-if="loading" color="warning" size="1em"/>
+            </q-btn>
           </div>
       </q-card>
 
@@ -94,8 +96,8 @@ export default {
 
   data() {
     return {
-      stars: 0
-
+      stars: 0,
+      loading: false
     }
   },
 

@@ -46,8 +46,10 @@
             <q-separator  color="grey"/>
 
           <q-card-actions align="right" class="row bg-white text-primary bg-grey-10">
-              <p class="q-pr-md text-grey"> Flip {{game.amount}}</p>
-            <q-btn outline color="warning" label="Flip" :disabled="insufficient" @click="newFlip"/>
+            <p class="q-pr-md text-grey"> Flip {{game.amount}}</p>
+            <q-btn outline color="warning" label="Flip" :disabled="insufficient" @click="newFlip">
+              <q-spinner-ios v-if="loading" color="warning" size="1em"/>
+            </q-btn>
           </q-card-actions>
         </q-card>
         </q-dialog>
@@ -61,7 +63,8 @@
       data() {
         return {
           open: false,
-          ratingModel: 0
+          ratingModel: 0,
+          loading: false
         }
       },
 
@@ -70,12 +73,13 @@
 
         insufficient(){
           const balance = this.$store.getters['auth/user'].wallet.amount  
-          return balance < this.game.amount
+          return balance > this.game.amount
         }
       },
 
        methods:{
-          async newFlip(){    
+          async newFlip(){  
+            this.loading = true  
             const balance =  this.$store.getters['auth/user'].wallet.amount  
             
             try {
@@ -85,7 +89,7 @@
                 ratingModel: this.ratingModel,
                 game_id: this.game.id                
               })
-              balance - this.game.amount
+              balance -= this.game.amount
             } catch (error) {
               console.log(error)
             }

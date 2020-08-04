@@ -14,7 +14,10 @@
 
         <q-space/>
         <div class="q-mt-sm row justify-right">
-            <q-btn type="submit" no-caps color="primary" :disabled="!formIsValid">Sign Up</q-btn>
+            <q-btn type="submit" no-caps color="primary" :disabled="!formIsValid">
+              Sign Up
+              <q-spinner-ios v-if="loading" color="grey" size="1em"/>
+            </q-btn>
         </div>
       </form>
     </div>
@@ -33,7 +36,8 @@ export default {
         email: '',
         password: '',
         password_confirmation: ''
-      }
+      },
+      loading: false
     }
   },
 
@@ -54,6 +58,7 @@ export default {
 
   methods: {
     async signUp(){
+      this.loading = true
       // querry the backend for login
       const endPoint = await this.$axios.post(process.env.Api + "api/signup", this.form);
       // pass the requetsed data to a vareable
