@@ -57,10 +57,13 @@
 </template>
 
 <script>
+    import { Notify } from 'quasar'
+
     export default {
         data(){
             return{
                 open: false,
+
                 form:{
                   ratingModel: 0,
                   category: '',
@@ -103,9 +106,27 @@
                 try {
                     this.$axios.post(process.env.Api + 'api/game', this.form)
                     this.open = false
-                    
+
+                    Notify.create({
+                        timeout: 2000,
+                        position: 'center',
+                        color: 'warning',
+                        message: 'Flip Created Successfully'
+                    })
+                   
+                    // T O A S T 
+                    // Toast.fire({
+                    //     icon: 'success',
+                    //     title: 'Flip Created!'
+                    // }) 
                 } catch (error) {
-                    
+
+                    Notify.create({
+                        timeout: 2000,
+                        position: 'center',
+                        color: 'red',
+                        message: error
+                    })
                 }
             }
         }

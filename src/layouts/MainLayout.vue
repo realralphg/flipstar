@@ -14,7 +14,7 @@
         <q-space/>
 
         <q-tabs stretch narrow-indicator inline-label>
-          <q-route-tab no-caps icon="home" to="/home" exact label="Game House" class="gt-xs" v-if="isLoggedIn"/>
+          <q-route-tab no-caps icon="home" to="/home" exact label="Game Hub" class="gt-xs" v-if="isLoggedIn"/>
           <q-route-tab no-caps icon="face" to="/signup" exact label="Sign Up" class="gt-xs" v-if="!isLoggedIn"/>
           <q-route-tab no-caps icon="lock_open" to="/signin" exact label="Sign In" class="gt-xs" v-if="!isLoggedIn"/>
           <q-route-tab no-caps icon="sentiment_very_satisfied" to="/profile" exact label="Profile" class="gt-xs" v-if="isLoggedIn"/>
@@ -52,7 +52,7 @@
             <q-icon name="home"></q-icon>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Game House</q-item-label>
+            <q-item-label>Game Hub</q-item-label>
           </q-item-section>
         </q-item>
 

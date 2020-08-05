@@ -18,7 +18,8 @@
   },
   "devDependencies": {
     "@quasar/app": "^2.0.0",
-    "@quasar/quasar-app-extension-dotenv": "^1.0.3"
+    "@quasar/quasar-app-extension-dotenv": "^1.0.3",
+    "sweetalert2": "^9.17.1"
   },
   "browserslist": [
     "last 10 Chrome versions",

@@ -58,6 +58,8 @@
 </template>
 
 <script>
+    import { Notify } from 'quasar'
+    
     export default {
       props:['game'],
       data() {
@@ -73,7 +75,7 @@
 
         insufficient(){
           const balance = this.$store.getters['auth/user'].wallet.amount  
-          return balance > this.game.amount
+          return balance < this.game.amount
         }
       },
 
@@ -90,8 +92,20 @@
                 game_id: this.game.id                
               })
               balance -= this.game.amount
+
+              Notify.create({
+                timeout: 2000,
+                position: 'center',
+                color: 'warning',
+                message: 'Flip Successful!'
+              })              
             } catch (error) {
-              console.log(error)
+              Notify.create({
+                timeout: 2000,
+                position: 'center',
+                color: 'red',
+                message: error
+              })               
             }
 
           }
