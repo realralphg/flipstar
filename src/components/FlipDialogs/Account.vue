@@ -14,12 +14,18 @@
 
             <div>
                 <q-input v-model="form.account_number" name="account" label="Account Number"/>
-                <q-input v-model="form.account_name" label="Account Name" />
-                <q-input v-model="form.bank_name" label="Bank Name" />
-                <q-input v-model="form.bank_branch" label="Bank Branch" />
+                <q-select v-model="form.bank_name"
+                    :options="banks.data"
+                    option-value="code"
+                    option-label="name"
+                    map-options
+                    label="Bank" @input="verifyAccount"/>
+                <q-input v-model="form.account_name" label="Account Name" readonly=""/>
+                <q-input v-model="form.bank_branch" label="Bank Branch" readonly=""/>
+                <q-input v-model="form.bank_id" label="Bank Code" readonly=""/>
 
-                <q-card-actions align="right" class="q-mt-sm">
-                    <q-btn color="primary" label="Save Account" @click="save_account()" />
+                <q-card-actions align="right" class="q-mt-sm flex">
+                  <q-btn color="primary" label="Save Account" @click="save_account()" />
                 </q-card-actions>
             </div>
           </q-card-section>
@@ -35,11 +41,14 @@
             return{
               open: false,
               account: {},
+              banks: [],
               form:{
-                account_number: '',
                 account_name: '',
+                account_number: '0737985047',
+                bank_id: '',
                 bank_name: '',
-                bank_branch: ''
+                bank_branch: '',
+                recipient_code: ''
               }
             }
         },
@@ -49,7 +58,7 @@
         },
 
         mounted() {
-          this.getAccount();
+          this.get_banks();
         },
 
         methods: {
@@ -58,17 +67,46 @@
             const data = response
            },
 
-           async getAccount(){
-            const response = await this.$axios.get(process.env.Api + 'api/account/1')
+           async get_banks(){
+            const response = await this.$axios.get('https://api.paystack.co/bank')
             const data = response
-            this.account = data.data
-            this.form.account_number = data.data.account_number
+            this.banks = data.data
+           },
+
+//sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109
+           async verifyAccount(e){
+             this.form.bank_id = e.code
+             this.form.bank_name = e.name
+            //  verify account
+              const response = await this.$axios.get('https://api.paystack.co/bank/resolve?account_number=' + this.form.account_number + '&bank_code='+ this.form.bank_id, {
+                headers: {
+                    'Authorization': 'Bearer sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109'
+                  }
+              })
+              let data = response
+              data = data.data
+              this.form.account_name = data.data.account_name
+
+              // Create a transfer recipient
+              const response1 = await this.$axios.post('https://api.paystack.co/transferrecipient',{
+                type: "nuban",
+                name: data.data.account_name,
+                account_number: data.data.account_number,
+                bank_code: e.code,
+                currency: "NGN"
+              }, {
+                headers: {
+                    'Authorization': 'Bearer sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109'
+                  }
+              })
+
+              data = response1
+              data = data.data
+              this.form.recipient_code = data.data.recipient_code
+              console.log(this.form.recipient_code);
            },
         }
 
     }
 </script>
 
-<style scoped>
-
-</style>

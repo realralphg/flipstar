@@ -17,7 +17,7 @@
 
             <div>
                 <q-input v-value="user.email" name="email" label="Email:"/>
-                <q-input v-model="form.amount" label="Withdraw Amount"/>
+                <q-input v-model="amount" label="Withdraw Amount"/>
                 <span class="text-warning text-center"><small>Cash withdrawn is paid into your Bank Account.</small></span>
 
                 <q-card-actions align="right" class="q-mt-sm">
@@ -36,9 +36,7 @@
         data(){
             return{
               open: false,
-              form:{
-                amount: null,
-              }
+              amount: null,
             }
         },
 
@@ -49,8 +47,17 @@
         methods: {
             async withdraw(){
               try {
-                const response = this.$axios.post(process.env.Api + 'api/withdrawals', this.form)
-                const data = response
+                // Create a transfer recipient
+              const response1 = await this.$axios.post('https://api.paystack.co/transfer',{
+                  source: "balance",
+                  amount: this.amount,
+                  recipient: this.$store.getters['auth/user'].bank.recipient_code,
+                  reason: "Flippay Withdrawals"
+                }, {
+                  headers: {
+                      'Authorization': 'Bearer sk_test_4c72af336a3c0fb810ddb3acc76e14c20bce0109'
+                    }
+                })
               } catch (error) {
 
               }
