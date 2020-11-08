@@ -2,11 +2,8 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn flat dense round icon="menu" aria-label="Menu" class="xs"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
 
-        <q-toolbar-title>
+        <q-toolbar-title class="text-warning">
           <router-link to="/home" tag="span" style="cursor: pointer"> Flip </router-link>
           <router-link to="/home" tag="span" style="cursor: pointer"> <q-icon name="star_half" /> </router-link>
         </q-toolbar-title>
@@ -22,6 +19,10 @@
         </q-tabs>
 
         <q-btn v-if="isLoggedIn" no-caps flat @click="logOut" color="white"> Sign Out </q-btn>
+        
+        <q-btn flat color="warning" dense round icon="menu" aria-label="Menu" class="xs"
+          @click="leftDrawerOpen = !leftDrawerOpen"
+        />
       </q-toolbar>
     </q-header>
 
@@ -42,7 +43,7 @@
     >
       <q-list>
 
-        <q-item-label header class="text-white text-h5 text-weight-light">
+        <q-item-label header class="text-warning text-h5">
           Flip
           <q-icon name="star_half" />
         </q-item-label>

@@ -114,8 +114,8 @@
                         message: 'Flip Created Successfully'
                     })
                    
-                    // T O A S T 
-                    // Toast.fire({
+                    //T O A S T 
+                    // $toast.fire({
                     //     icon: 'success',
                     //     title: 'Flip Created!'
                     // }) 
@@ -125,7 +125,7 @@
                         timeout: 2000,
                         position: 'center',
                         color: 'red',
-                        message: error
+                        message: 'Error'
                     })
                 }
             }
