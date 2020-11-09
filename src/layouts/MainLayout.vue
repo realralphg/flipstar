@@ -4,21 +4,21 @@
       <q-toolbar>
 
         <q-toolbar-title class="text-warning">
-          <router-link to="/home" tag="span" style="cursor: pointer"> Flip </router-link>
-          <router-link to="/home" tag="span" style="cursor: pointer"> <q-icon name="star_half" /> </router-link>
+          <router-link to="/gamehub" tag="span" style="cursor: pointer"> Flip </router-link>
+          <router-link to="/gamehub" tag="span" style="cursor: pointer"> <q-icon name="star_half" /> </router-link>
         </q-toolbar-title>
 
         <q-space/>
 
-        <q-tabs stretch narrow-indicator inline-label>
-          <q-route-tab no-caps icon="home" to="/home" exact label="Game Hub" class="gt-xs" v-if="isLoggedIn"/>
+        <q-tabs stretch narrow-indicator inline-label indicator-color="transparent">
+          <q-route-tab no-caps icon="home" to="/gamehub" exact label="Game Hub" class="gt-xs" v-if="isLoggedIn"/>
           <q-route-tab no-caps icon="face" to="/signup" exact label="Sign Up" class="gt-xs" v-if="!isLoggedIn"/>
           <q-route-tab no-caps icon="lock_open" to="/signin" exact label="Sign In" class="gt-xs" v-if="!isLoggedIn"/>
           <q-route-tab no-caps icon="sentiment_very_satisfied" to="/profile" exact label="Profile" class="gt-xs" v-if="isLoggedIn"/>
           <q-route-tab no-caps icon="attach_money" to="/how" exact label="How to Flip" class="gt-xs" />
         </q-tabs>
 
-        <q-btn v-if="isLoggedIn" no-caps flat @click="logOut" color="white"> Sign Out </q-btn>
+        <q-btn class="gt-xs" v-if="isLoggedIn" icon="lock" no-caps flat @click="logOut" color="white"> Sign Out </q-btn>
         
         <q-btn flat color="warning" dense round icon="menu" aria-label="Menu" class="xs"
           @click="leftDrawerOpen = !leftDrawerOpen"
@@ -48,7 +48,7 @@
           <q-icon name="star_half" />
         </q-item-label>
 
-        <q-item class="text-grey" to="/home" exact clickable v-if="isLoggedIn">
+        <q-item class="text-grey" to="/gamehub" exact clickable v-if="isLoggedIn">
           <q-item-section avatar>
             <q-icon name="home"></q-icon>
           </q-item-section>
@@ -80,7 +80,7 @@
             <q-icon name="sentiment_very_satisfied"></q-icon>
           </q-item-section>
           <q-item-section>
-            <q-item-label>Flip Profile</q-item-label>
+            <q-item-label>Profile</q-item-label>
           </q-item-section>
         </q-item>
 
@@ -94,7 +94,7 @@
         </q-item>
         <q-item class="text-grey" clickable @click="logOut()" v-if="isLoggedIn">
           <q-item-section avatar>
-            <q-icon name=""></q-icon>
+            <q-icon name="lock"></q-icon>
           </q-item-section>
           <q-item-section>
             <q-item-label>Sign Out </q-item-label>
@@ -128,6 +128,7 @@ export default {
   methods: {
     logOut(){
        this.$store.commit('auth/logout')
+       this.$router.replace("/signin")
     }
   }
 }
@@ -135,7 +136,7 @@ export default {
 
 <style scoped>
 .q-router-link--exact-active{
-  color: white !important;
+  color: #e6a902 !important;
 }
 
 

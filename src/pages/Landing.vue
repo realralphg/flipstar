@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-grey-10">
+  <q-page class="bg-grey-10" >
 <!-- FIRSTPicture -->
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-6 flex flex-center text-center q-px-xl q-mt-md">

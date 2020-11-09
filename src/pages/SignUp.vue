@@ -25,7 +25,7 @@
 </template>
 
 <script>
-
+import { Notify } from 'quasar'
 export default {
   name: 'SignUp',
   data () {
@@ -58,21 +58,40 @@ export default {
 
   methods: {
     async signUp(){
-      this.loading = true
-      // querry the backend for login
-      const endPoint = await this.$axios.post(process.env.Api + "api/signup", this.form);
-      // pass the requetsed data to a vareable
-      const res = endPoint.data;
-      // pass the users info from the data to the store mutation
-      await this.$store.commit("auth/signup", {
-          data: res.data,
-          token: res.access_token
-        });
-      //redirect to home
-      this.$router.push('/');
-      // pass the token into the $axios authorization header after login
-      this.$axios.defaults.headers.common["Authorization"] = "Bearer " + res.access_token;
+      try {
+        this.loading = true
+        // querry the backend for login
+        const endPoint = await this.$axios.post(process.env.Api + "api/signup", this.form);
+        // pass the requetsed data to a vareable
+        const res = endPoint.data;
+        // pass the users info from the data to the store mutation
+        await this.$store.commit("auth/signup", {
+            data: res.data,
+            token: res.access_token
+          });
+        //redirect to home
+        this.$router.push('/gamehub');
+        // pass the token into the $axios authorization header after login
+        this.$axios.defaults.headers.common["Authorization"] = "Bearer " + res.access_token;
 
+        this.loading = false
+
+        Notify.create({
+            timeout: 2000,
+            position: 'center',
+            color: 'warning',
+            message: 'Welcome to the Money Hub!'
+        })  
+
+      } catch (error) {
+        Notify.create({
+            timeout: 2000,
+            position: 'center',
+            color: 'red',
+            message: 'Error, try again later!'
+        })
+        this.loading = false
+      }
     }
 
   }

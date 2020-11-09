@@ -98,14 +98,16 @@
                 position: 'center',
                 color: 'warning',
                 message: 'Flip Successful!'
-              })              
+              })   
+              this.loading = false           
             } catch (error) {
               Notify.create({
                 timeout: 2000,
                 position: 'center',
                 color: 'red',
                 message: error
-              })               
+              })  
+              this.loading = false             
             }
 
           }

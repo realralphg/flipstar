@@ -47,8 +47,10 @@
             <q-separator color="grey"/>
 
             <q-card-actions align="right" class="row bg-grey-10 text-grey">
-              <p class="q-pr-md text-warning"> Flip: {{ form.category }}</p>
-              <q-btn outline color="warning" label="Create Flip" @click="createGame()"/>
+                <p class="q-pr-md text-warning"> Flip: {{ form.category }}</p>
+                <q-btn outline color="warning" label="Create Flip" @click="createGame()">
+                    <q-spinner-ios v-if="loading" color="warning" size="1em"/>
+                </q-btn>
             </q-card-actions>
           </q-card>
         </q-dialog>
@@ -63,6 +65,7 @@
         data(){
             return{
                 open: false,
+                loading: false,
 
                 form:{
                   ratingModel: 0,
@@ -104,6 +107,7 @@
         methods:{
             createGame(){
                 try {
+                    this.loading = true
                     this.$axios.post(process.env.Api + 'api/game', this.form)
                     this.open = false
 
@@ -113,6 +117,7 @@
                         color: 'warning',
                         message: 'Flip Created Successfully'
                     })
+                    this.loading = false
                    
                     //T O A S T 
                     // $toast.fire({
@@ -127,6 +132,7 @@
                         color: 'red',
                         message: 'Error'
                     })
+                    this.loading = false
                 }
             }
         }

@@ -10,9 +10,9 @@ const routes = [
         component: () => import('pages/Landing.vue'),
       },      
       {
-        path: '/home',
-        name: 'home',
-        component: () => import('pages/Home.vue'),
+        path: '/gamehub',
+        name: 'gamehub',
+        component: () => import('pages/GameHub.vue'),
       },    
       {
         path: '/profile',
