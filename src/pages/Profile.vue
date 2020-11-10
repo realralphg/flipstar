@@ -14,7 +14,7 @@
 
                 <div class="q-pt-none">
                     <div class="row justify-center text-h6 ellipsis text-grey-4">
-                        Jax
+                        {{user.name}}
                     </div>
 
                     <div class="row justify-center text-h6 ellipsis">
@@ -25,7 +25,7 @@
                         <q-chip clickable @click="updateDialog=true" icon="star_outline">Update Profile/Cashout Details</q-chip>
                     </div>
 
-                    <div class="row justify-center">
+                    <div class="row justify-center q-mb-md" style="cursor: pointer">
                         <Account />
                     </div>
 
@@ -37,12 +37,12 @@
 
             <q-card-section class="q-pt-none">
                 <div class="text-h7 text-warning">
-                    Your Wins:
+                    Your Scoreboard:
                 </div>
                 <div class="text-caption text-grey-4">
-                    #1,000 - Date<br>
-                    #10,000 - Date<br>
-                    #5,000 - Date<br>
+                    #1,000 - 09th November, 2020 - Ralph won<br>
+                    #3,000 - 04th November, 2020 - Ralph won<br>
+                    #5,000 - 10th September, 2020 - Admin won<br>
                 </div>
             </q-card-section>
 
@@ -54,7 +54,7 @@
                 <CashoutDialog />
 
                 <q-space/>
-                <q-btn to="/home" outline color="warning"> Go Flip </q-btn>
+                <q-btn to="/gamehub" outline color="warning"> Go Flip </q-btn>
             </q-card-actions>
         </q-card>
 

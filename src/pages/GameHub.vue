@@ -61,7 +61,7 @@
           <q-item-section>
             <q-item-label> Flip #{{ game.amount }} </q-item-label>
             <q-item-label caption lines="2">
-              flippers:
+              <span class="text-warning text-bold">Flips:</span> 
               <span v-for="(player, index) in game.players" :key="index">
                 {{player.user.name}},
               </span>
@@ -138,7 +138,7 @@ export default {
        const endPoint = await this.$axios.get(process.env.Api + "api/category");
       // pass the requetsed data to a vareable
       const res = endPoint.data;
-      this.categories = res.data
+      this.categories = res.data      
     },
 
      async getGames(){
@@ -146,6 +146,7 @@ export default {
       // pass the requetsed data to a vareable
       const res = endPoint.data;
       this.games = res.data
+      console.log(this.games.forEach((item) => {item.id}));
     },
     formatDate(data){
       return date.formatDate(data, 'YYYY-MM-DD')

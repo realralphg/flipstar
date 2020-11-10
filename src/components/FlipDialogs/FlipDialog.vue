@@ -47,7 +47,7 @@
 
           <q-card-actions align="right" class="row bg-white text-primary bg-grey-10">
             <p class="q-pr-md text-grey"> Flip {{game.amount}}</p>
-            <q-btn outline color="warning" label="Flip" :disabled="insufficient" @click="newFlip">
+            <q-btn outline color="warning" label="Flip" :disabled="insufficient || this.flipped" @click="newFlip">
               <q-spinner-ios v-if="loading" color="warning" size="1em"/>
             </q-btn>
           </q-card-actions>
@@ -66,7 +66,8 @@
         return {
           open: false,
           ratingModel: 0,
-          loading: false
+          loading: false,
+          flipped: false
         }
       },
 
@@ -90,8 +91,7 @@
                 category: this.game.amount,
                 ratingModel: this.ratingModel,
                 game_id: this.game.id                
-              })
-              balance -= this.game.amount
+              })              
 
               Notify.create({
                 timeout: 2000,
@@ -99,6 +99,7 @@
                 color: 'warning',
                 message: 'Flip Successful!'
               })   
+              this.flipped = true
               this.loading = false           
             } catch (error) {
               Notify.create({
