@@ -11,13 +11,13 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "@quasar/icongenie": "^2.3.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "quasar": "^1.12.7",
     "vue-i18n": "^8.0.0"
   },
   "devDependencies": {
-    "@quasar/app": "^2.0.0",
+    "@quasar/app": "^2.1.14",
     "@quasar/quasar-app-extension-dotenv": "^1.0.3",
     "sweetalert2": "^9.17.1"
   },
